@@ -60,23 +60,15 @@ const HowToPlayModal = ({ howToPlayOpen, setHowToPlayOpen }) => {
               <h3>How The Game Works</h3>
               <ul>
                 <li>
-                  Your aim is to guess the{" "}
+                  Given <span style={{ fontWeight: "bold" }}>6 attempts</span>,
+                  your aim is to guess the{" "}
                   <span style={{ fontWeight: "bold" }}>mystery NBA player</span>
-                </li>
-                <li>
-                  You have{" "}
-                  <span style={{ fontWeight: "bold" }}>6 attempts</span> to
-                  guess the correct player
                 </li>
                 <li>
                   You have an option to use a{" "}
                   <span style={{ fontWeight: "bold" }}>one time hint</span> that
-                  consumes a guess
-                </li>
-                <li>
-                  <span style={{ fontStyle: "italic" }}>
-                    You cannot use a hint on the final guess
-                  </span>
+                  consumes a guess, but this hint can't be used on the final
+                  guess
                 </li>
               </ul>
 
