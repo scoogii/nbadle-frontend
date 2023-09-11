@@ -146,7 +146,7 @@ const Guess = ({
           {isLoading ? (
             <Tooltip title={guess}>
               <img
-                src={headshot}
+                src={headshot !== "" ? headshot : null}
                 style={{
                   maxWidth: "100%",
                   maxHeight: "100%",
@@ -175,7 +175,9 @@ const Guess = ({
             >
               <Tooltip title={teamName}>
                 <img
-                  src={`/${teamName.toLowerCase()}.png`}
+                  src={
+                    teamName !== "" ? `/${teamName.toLowerCase()}.png` : null
+                  }
                   alt={teamName}
                   style={{
                     maxWidth: "75%",
@@ -222,7 +224,7 @@ const Guess = ({
           {isLoading ? (
             <div>
               {age}
-              {higherLower(age, playerAge)}
+              {age !== "" ? higherLower(age, playerAge) : null}
             </div>
           ) : (
             <CircularProgress />
@@ -244,7 +246,7 @@ const Guess = ({
         >
           {isLoading ? (
             <div>
-              {no !== "" ? no : "N/A"}
+              {no !== "" ? no : null}
               {no !== "" ? higherLower(parseInt(no), parseInt(playerNo)) : null}
             </div>
           ) : (
@@ -260,7 +262,9 @@ const Guess = ({
           {isLoading ? (
             <div>
               {draftNo}
-              {higherLower(parseInt(draftNo), parseInt(playerDraftNo))}
+              {draftNo !== ""
+                ? higherLower(parseInt(draftNo), parseInt(playerDraftNo))
+                : null}
             </div>
           ) : (
             <CircularProgress />
