@@ -99,13 +99,15 @@ export default function Home() {
       { name: "player_number" },
       { name: "draft_number" },
     ]);
+    console.log("HintColumns after cleanup");
   };
 
   // HANDLERS
   // On start game button press, load game
   const onStartGameClickHandler = () => {
-    getPlayerData();
+    console.log("Cleaning up");
     cleanup();
+    getPlayerData();
   };
 
   // Guess event handler
