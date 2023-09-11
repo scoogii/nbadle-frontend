@@ -64,36 +64,36 @@ const Guess = ({
 
   // Map team names to imgs
   const logos = {
-    ATL: "/hawks.png",
-    BOS: "/celtics.png",
-    BKN: "/nets.png",
-    CHA: "/hornets.png",
-    CHI: "/bulls.png",
-    CLE: "/cavs.png",
-    DAL: "/mavs.png",
-    DEN: "/nuggets.png",
-    DET: "/pistons.png",
-    GSW: "/warriors.png",
-    HOU: "/rockets.png",
-    IND: "/pacers.png",
-    LAC: "/clippers.png",
-    LAL: "/lakers.png",
-    MEM: "/grizzlies.png",
-    MIA: "/heat.png",
-    MIL: "/bucks.png",
-    MIN: "/timberwolves.png",
-    NOP: "/pelicans.png",
-    NYK: "/knicks.png",
-    OKC: "/thunder.png",
-    ORL: "/magic.png",
-    PHI: "/76ers.png",
-    PHX: "/suns.png",
-    POR: "/trailblazers.png",
-    SAC: "/kings.png",
-    SAS: "/spurs.png",
-    TOR: "/raptors.png",
-    UTA: "/jazz.png",
-    WAS: "/wizards.png",
+    Hawks: "/hawks.png",
+    Celtics: "/celtics.png",
+    Nets: "/nets.png",
+    Hornets: "/hornets.png",
+    Bulls: "/bulls.png",
+    Cavaliers: "/cavs.png",
+    Mavericks: "/mavs.png",
+    Nuggets: "/nuggets.png",
+    Pistons: "/pistons.png",
+    Warriors: "/warriors.png",
+    Rockets: "/rockets.png",
+    Pacers: "/pacers.png",
+    Clippers: "/clippers.png",
+    Lakers: "/lakers.png",
+    Grizzlies: "/grizzlies.png",
+    Heat: "/heat.png",
+    Bucks: "/bucks.png",
+    Timberwolves: "/timberwolves.png",
+    Pelicans: "/pelicans.png",
+    Knicks: "/knicks.png",
+    Thunder: "/thunder.png",
+    Magic: "/magic.png",
+    "76ers": "/76ers.png",
+    Suns: "/suns.png",
+    Trailblazers: "/trailblazers.png",
+    Kings: "/kings.png",
+    Spurs: "/spurs.png",
+    Raptors: "/raptors.png",
+    Jazz: "/jazz.png",
+    Wizards: "/wizards.png",
   };
 
   useEffect(() => {
@@ -210,7 +210,7 @@ const Guess = ({
               {teamName !== "" ? (
                 <Tooltip title={teamName}>
                   <img
-                    src={logos[teamName]}
+                    src={logos[{ teamName }]}
                     alt={teamName}
                     style={{
                       maxWidth: "75%",
