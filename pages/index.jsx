@@ -60,9 +60,12 @@ export default function Home() {
 
   // Retreive player data function
   const getPlayerData = async () => {
-    const response = await fetch("http://127.0.0.1:5000/api/getplayer", {
-      method: "GET",
-    });
+    const response = await fetch(
+      "https://nbadle-backend.onrender.com/api/getplayer",
+      {
+        method: "GET",
+      },
+    );
     const data = await response.json();
 
     if (data.error) {
@@ -148,9 +151,12 @@ export default function Home() {
   // On load, get all active player names (Autocomplete)
   useEffect(() => {
     const fetchNames = async () => {
-      const response = await fetch("http://127.0.0.1:5000/api/getnames", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://nbadle-backend.onrender.com/api/getnames",
+        {
+          method: "GET",
+        },
+      );
       const data = await response.json();
 
       if (data.error) {
