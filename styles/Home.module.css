@@ -1,0 +1,191 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/balls_2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0 0 1rem;
+  line-height: 1.15;
+  font-size: 3.6rem;
+}
+
+.title {
+  text-align: center;
+  opacity: 1;
+  animation: fadein 4s;
+}
+
+.smallTitle {
+  animation: fadein 6s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  max-width: 800px;
+  margin-top: 3rem;
+}
+
+.card {
+  margin: 1rem;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.logo {
+  height: 1em;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.rotate {
+  animation: rotation 3s linear infinite;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.fade {
+  animation: fadein 2.5s;
+}
+
+@keyframes slideIn {
+  0% {
+    transfor: scaleY(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    margin-top: 2%;
+  }
+  to {
+    margin-top: 0%;
+  }
+}
+
+.guessPaper {
+  animation: 0.5s slideIn ease-in;
+  margin-top: 0%;
+}
+
+.correctGuess {
+  animation: fadein 2.5s;
+  background: #8de38e;
+}
+
+.closeGuess {
+  animation: fadein 2.5s;
+  background: #fce56f;
+}
+
+.guessPaper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 7px 3px rgba(0, 0, 0, 0.25);
+}
+
+.scaleButton {
+  transition: transform 0.1s;
+}
+
+.scaleButton:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+}
+
+.bgButton {
+  box-shadow: 0 9px #999;
+}
+
+.bgButton:hover {
+  background-color: #60bd81;
+}
+
+.bgButton:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.modalFadeIn {
+  animation: fadein 0.5s ease-in;
+}
