@@ -68,7 +68,6 @@ const Guess = ({
         setIsLoading(true);
         setHeadshot(data["headshot"]);
         setTeamName(data["team_name"]);
-        console.log(data["team_name"]);
         setConference(data["conference"]);
         setAge(data["age"]);
         setPos(data["position"]);
