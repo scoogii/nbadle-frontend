@@ -62,40 +62,6 @@ const Guess = ({
     }
   };
 
-  // Map team names to imgs
-  const logos = {
-    Hawks: "/hawks.png",
-    Celtics: "/celtics.png",
-    Nets: "/nets.png",
-    Hornets: "/hornets.png",
-    Bulls: "/bulls.png",
-    Cavaliers: "/cavs.png",
-    Mavericks: "/mavs.png",
-    Nuggets: "/nuggets.png",
-    Pistons: "/pistons.png",
-    Warriors: "/warriors.png",
-    Rockets: "/rockets.png",
-    Pacers: "/pacers.png",
-    Clippers: "/clippers.png",
-    Lakers: "/lakers.png",
-    Grizzlies: "/grizzlies.png",
-    Heat: "/heat.png",
-    Bucks: "/bucks.png",
-    Timberwolves: "/timberwolves.png",
-    Pelicans: "/pelicans.png",
-    Knicks: "/knicks.png",
-    Thunder: "/thunder.png",
-    Magic: "/magic.png",
-    "76ers": "/76ers.png",
-    Suns: "/suns.png",
-    Trailblazers: "/trailblazers.png",
-    Kings: "/kings.png",
-    Spurs: "/spurs.png",
-    Raptors: "/raptors.png",
-    Jazz: "/jazz.png",
-    Wizards: "/wizards.png",
-  };
-
   useEffect(() => {
     getGuessedPlayerData()
       .then((data) => {
@@ -208,20 +174,16 @@ const Guess = ({
                 height: "100%",
               }}
             >
-              {teamName !== "" ? (
-                <Tooltip title={teamName}>
-                  <img
-                    src={logos[teamName]}
-                    alt={teamName}
-                    style={{
-                      maxWidth: "75%",
-                      maxHeight: "75%",
-                    }}
-                  />
-                </Tooltip>
-              ) : (
-                "N/A"
-              )}
+              <Tooltip title={teamName}>
+                <img
+                  src={`/${teamName.toLowerCase()}.png`}
+                  alt={teamName}
+                  style={{
+                    maxWidth: "75%",
+                    maxHeight: "75%",
+                  }}
+                />
+              </Tooltip>
             </Box>
           ) : (
             <CircularProgress />
