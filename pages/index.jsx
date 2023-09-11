@@ -42,7 +42,6 @@ export default function Home() {
   const guessRef = useRef(null);
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
-  const [hint, setHint] = useState(0);
 
   // Modals for win and loss
   const [winOpen, setWinOpen] = useState(false);
@@ -87,7 +86,6 @@ export default function Home() {
     setGuess("");
     setGuesses([]);
     setIsShown(true);
-    setHint(0);
     setHintClicked(false);
     setGameFinished(false);
     setGameWon(false);
@@ -144,7 +142,6 @@ export default function Home() {
 
     // Hint counts as one valid guess
     setGuesses([...guesses, "HINT"]);
-    setHint(hint + 1);
   };
 
   // USE EFFECTS
