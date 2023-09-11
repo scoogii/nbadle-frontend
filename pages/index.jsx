@@ -61,7 +61,7 @@ export default function Home() {
   // Retreive player data function
   const getPlayerData = async () => {
     const response = await fetch(
-      "https://nbadle-backend.onrender.com/api/getplayer",
+      "https://nbadle-backend-123.azurewebsites.net/api/getplayer",
       {
         method: "GET",
       },
@@ -152,7 +152,7 @@ export default function Home() {
   useEffect(() => {
     const fetchNames = async () => {
       const response = await fetch(
-        "https://nbadle-backend.onrender.com/api/getnames",
+        "https://nbadle-backend-123.azurewebsites.net/api/getnames",
         {
           method: "GET",
         },
