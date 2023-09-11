@@ -32,7 +32,7 @@ const Guess = ({
   const getGuessedPlayerData = async () => {
     if (guess !== "HINT") {
       const response = await fetch(
-        `https://nbadle-backend-123.azurewebsites.net/api/getguessedplayer?guess=${guess}`,
+        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${guess}`,
         {
           method: "GET",
         },
