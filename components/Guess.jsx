@@ -54,7 +54,7 @@ const Guess = ({
 
       for (const column in data) {
         if (column !== hintColumn["name"]) {
-          data[column] = null;
+          data[column] = "";
         }
       }
 
