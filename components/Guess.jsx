@@ -211,7 +211,7 @@ const Guess = ({
               {teamName !== "" ? (
                 <Tooltip title={teamName}>
                   <img
-                    src={logos[{ teamName }]}
+                    src={logos[teamName]}
                     alt={teamName}
                     style={{
                       maxWidth: "75%",
