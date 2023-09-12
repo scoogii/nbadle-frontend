@@ -11,6 +11,7 @@ import GameScreen from "../components/GameScreen";
 import WinLoseModal from "../components/WinLoseModal";
 import HowToPlayModal from "../components/HowToPlayModal";
 import AlertBar from "../components/AlertBar";
+import CheatSheetModal from "../components/CheatSheetModal";
 
 export default function Home() {
   // Player data
@@ -49,6 +50,9 @@ export default function Home() {
 
   // How to play modal
   const [howToPlayOpen, setHowToPlayOpen] = useState(false);
+
+  // Cheat sheet modal
+  const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
 
   // Hint Button status
   const [hintClicked, setHintClicked] = useState(false);
@@ -212,12 +216,18 @@ export default function Home() {
         setHowToPlayOpen={setHowToPlayOpen}
       />
 
+      <CheatSheetModal
+        cheatSheetOpen={cheatSheetOpen}
+        setCheatSheetOpen={setCheatSheetOpen}
+      />
+
       {/* Header */}
       <Header
         setIsShown={setIsShown}
         setGameFinished={setGameFinished}
         setGuesses={setGuesses}
         setHowToPlayOpen={setHowToPlayOpen}
+        setCheatSheetOpen={setCheatSheetOpen}
       />
 
       {/* Content container */}

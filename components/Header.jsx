@@ -2,12 +2,14 @@ import { Button } from "@mui/joy";
 import styles from "../styles/Home.module.css";
 import { Box } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
+import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 
 const Header = ({
   setIsShown,
   setGameFinished,
   setGuesses,
   setHowToPlayOpen,
+  setCheatSheetOpen,
 }) => {
   // Return to starting screen
   const clickHomeHandler = () => {
@@ -35,8 +37,25 @@ const Header = ({
         marginBottom: "3vh",
       }}
     >
+      <Button
+        className={styles.scaleButton}
+        sx={{
+          background: "transparent",
+          position: "absolute",
+          left: "0",
+          marginLeft: "1vw",
+        }}
+        onClick={() => {
+          setCheatSheetOpen(true);
+        }}
+      >
+        <EmojiObjectsIcon />
+      </Button>
       <Box
         sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           textAlign: "center",
           flex: "1 0 auto",
         }}
@@ -44,13 +63,13 @@ const Header = ({
         <img
           src="/basketball.png"
           className={styles.rotate}
-          width="40px"
-          height="40px"
+          width="30px"
+          height="30px"
         />
         <Button
           sx={{
             background: "transparent",
-            fontSize: "30pt",
+            fontSize: { xs: "25pt", sm: "30pt" },
             textAlign: "center",
           }}
           className={styles.scaleButton}
@@ -61,8 +80,8 @@ const Header = ({
         <img
           src="/basketball.png"
           className={styles.rotate}
-          width="40px"
-          height="40px"
+          width="30px"
+          height="30px"
         />
       </Box>
       <Button
