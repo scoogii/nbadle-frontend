@@ -20,7 +20,7 @@ const Lives = ({ guesses }) => {
       sx={{
         display: "flex",
         flexDirection: "row",
-        marginTop: "3.5vh",
+        marginTop: { xs: "4vh", sm: "3vh", md: "3vh", lg: "2.5vh" },
         gap: { xs: "0.2vw", sm: "0.2vw", md: "0.3vw", lg: "0.5vw" },
       }}
     >
