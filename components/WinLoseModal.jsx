@@ -38,7 +38,7 @@ const WinLoseModal = ({
             }}
             sx={{
               width: { xs: "70vw", sm: "50vw", md: "40vw" },
-              height: { xs: "45vh", sm: "60vh", lg: "55vh" },
+              height: { xs: "55vh", sm: "60vh", lg: "55vh" },
               borderRadius: "14px",
             }}
           >
@@ -74,7 +74,7 @@ const WinLoseModal = ({
             </Typography>
             <Button
               sx={{
-                width: { xs: "20vw", md: "15vw", lg: "10vw" },
+                width: { xs: "23vw", md: "15vw", lg: "10vw" },
                 height: { xs: "7vh", md: "6vh", lg: "6vh" },
                 color: "white",
                 borderRadius: "14px",

@@ -1,6 +1,7 @@
 import { Box } from "@mui/joy";
 import GuessForm from "./GuessForm";
 import HintButton from "./HintButton";
+import Lives from "./Lives";
 
 const PlayActions = ({
   gameFinished,
@@ -32,6 +33,7 @@ const PlayActions = ({
             setGuess={setGuess}
             setGuesses={setGuesses}
           />
+          <Lives guesses={guesses} />
           <HintButton
             hintClicked={hintClicked}
             handleHintPress={handleHintPress}
