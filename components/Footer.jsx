@@ -1,3 +1,4 @@
+import { Link } from "@mui/joy";
 import { Box } from "@mui/material";
 
 const Footer = () => {
@@ -19,7 +20,26 @@ const Footer = () => {
         marginTop: "3vh",
       }}
     >
-      By Bud Truong & Christian Nguyen
+      <span style={{ textAlign: "center" }}>
+        By&nbsp;
+        <Link
+          underline="none"
+          href="https://www.linkedin.com/in/bud-truong-3a742a217/"
+          target="_blank"
+          style={{ color: "white" }}
+        >
+          Bud Truong
+        </Link>
+        &nbsp;and&nbsp;
+        <Link
+          underline="none"
+          href="https://www.linkedin.com/in/christianngu/"
+          target="_blank"
+          style={{ color: "white" }}
+        >
+          Christian Nguyen
+        </Link>
+      </span>
     </Box>
   );
 };
