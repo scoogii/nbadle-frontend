@@ -10,7 +10,7 @@ const ColumnHeading = ({ heading }) => {
   };
 
   const boxStyle = {
-    width: { xs: "14vw", md: "12vw", lg: "10vw" },
+    // width: { xs: "14vw", md: "12vw", lg: "10vw" },
     height: "100%",
     fontSize: { xs: "2.5vw", sm: "2vw", md: "1.5vw", lg: "1.3vw" },
   };
