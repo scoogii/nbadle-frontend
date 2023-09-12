@@ -21,7 +21,7 @@ const ColumnHeadings = () => {
       <ColumnHeading heading="Conf." />
       <ColumnHeading heading="Age" />
       <ColumnHeading heading="Position" />
-      <ColumnHeading heading="Jersey" />
+      <ColumnHeading heading="#" />
       <ColumnHeading heading="Draft#" />
     </Box>
   );

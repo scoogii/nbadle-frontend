@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 
 const ColumnHeading = ({ heading }) => {
   const columnStyle = {
-    width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -10,7 +9,7 @@ const ColumnHeading = ({ heading }) => {
   };
 
   const boxStyle = {
-    // width: { xs: "14vw", md: "12vw", lg: "10vw" },
+    width: "100%",
     height: "100%",
     fontSize: { xs: "2.5vw", sm: "2vw", md: "1.5vw", lg: "1.3vw" },
   };
