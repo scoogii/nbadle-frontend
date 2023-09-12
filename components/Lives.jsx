@@ -2,7 +2,7 @@ import { Box } from "@mui/joy";
 
 const Lives = ({ guesses }) => {
   const lives = [];
-  for (let i = 0; i < 6 - guesses.length; i++) {
+  for (let i = 0; i < 8 - guesses.length; i++) {
     lives.push(
       <Box
         component="img"

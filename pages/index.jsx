@@ -43,6 +43,7 @@ export default function Home() {
   const guessRef = useRef(null);
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
+  guesses;
 
   // Modals for win and loss
   const [winOpen, setWinOpen] = useState(false);
@@ -178,7 +179,7 @@ export default function Home() {
     });
 
     // Disable hint when there are 5 guesses
-    if (guesses.length === 5) {
+    if (guesses.length === 7) {
       setHintClicked(true);
     }
 
@@ -188,7 +189,7 @@ export default function Home() {
     }
 
     // Lose condition - show lose modal and load actual player guess row
-    if (guesses.length === 6 && !gameWon) {
+    if (guesses.length === 8 && !gameWon) {
       setGuesses([...guesses, playerFullName]);
       setGameFinished(true);
       setLoseOpen(true);
