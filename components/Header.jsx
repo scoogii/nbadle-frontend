@@ -1,6 +1,6 @@
 import { Button } from "@mui/joy";
 import styles from "../styles/Home.module.css";
-import { Box } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 
@@ -37,20 +37,22 @@ const Header = ({
         marginBottom: "3vh",
       }}
     >
-      <Button
-        className={styles.scaleButton}
-        sx={{
-          background: "transparent",
-          position: "absolute",
-          left: "0",
-          marginLeft: "1vw",
-        }}
-        onClick={() => {
-          setCheatSheetOpen(true);
-        }}
-      >
-        <EmojiObjectsIcon />
-      </Button>
+      <Tooltip title="Need Help?">
+        <Button
+          className={styles.scaleButton}
+          sx={{
+            background: "transparent",
+            position: "absolute",
+            left: "0",
+            marginLeft: "1vw",
+          }}
+          onClick={() => {
+            setCheatSheetOpen(true);
+          }}
+        >
+          <EmojiObjectsIcon />
+        </Button>
+      </Tooltip>
       <Box
         sx={{
           display: "flex",
@@ -65,6 +67,7 @@ const Header = ({
           className={styles.rotate}
           width="30px"
           height="30px"
+          alt="basketball"
         />
         <Button
           sx={{
@@ -82,22 +85,25 @@ const Header = ({
           className={styles.rotate}
           width="30px"
           height="30px"
+          alt="basketball"
         />
       </Box>
-      <Button
-        className={styles.scaleButton}
-        sx={{
-          background: "transparent",
-          position: "absolute",
-          right: "0",
-          marginRight: "1vw",
-        }}
-        onClick={() => {
-          setHowToPlayOpen(true);
-        }}
-      >
-        <HelpIcon />
-      </Button>
+      <Tooltip title="How To Play">
+        <Button
+          className={styles.scaleButton}
+          sx={{
+            background: "transparent",
+            position: "absolute",
+            right: "0",
+            marginRight: "1vw",
+          }}
+          onClick={() => {
+            setHowToPlayOpen(true);
+          }}
+        >
+          <HelpIcon />
+        </Button>
+      </Tooltip>
     </Box>
   );
 };
