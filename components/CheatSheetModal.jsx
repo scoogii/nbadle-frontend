@@ -1,5 +1,6 @@
 import { Box, Modal, ModalClose, Sheet } from "@mui/joy";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
   const teamsContainerStyle = {
@@ -11,14 +12,16 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
     gap: { xs: "5px", sm: "6px", md: "8px", lg: "10px" },
   };
   const imageContainerStyle = {
-    width: { xs: "45px", sm: "50px", md: "55px", lg: "60px" },
-    height: "100%",
+    display: "flex",
+    width: { xs: "65px", sm: "80px", md: "80px", lg: "85px" },
+    height: { xs: "65px", sm: "80px", md: "80px", lg: "85px" },
     justifyContent: "center",
+    alignItems: "center",
   };
 
   const teamImageStyle = {
-    maxWidth: "100%",
-    maxHeight: "100%",
+    width: "75%",
+    height: "auto",
   };
 
   return (
@@ -80,129 +83,277 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
               <h3>West</h3>
               <Box sx={teamsContainerStyle}>
                 <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
                     src="/mavericks.png"
-                    sx={teamImageStyle}
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/nuggets.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/nuggets.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
                     src="/warriors.png"
-                    sx={teamImageStyle}
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/rockets.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/rockets.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
                     src="/clippers.png"
-                    sx={teamImageStyle}
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/lakers.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/lakers.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
                     src="/grizzlies.png"
-                    sx={teamImageStyle}
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
                     src="/timberwolves.png"
-                    sx={teamImageStyle}
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
                     src="/pelicans.png"
-                    sx={teamImageStyle}
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/thunder.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/thunder.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/suns.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/suns.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
                     src="/trail blazers.png"
-                    sx={teamImageStyle}
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/kings.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/kings.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/spurs.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/spurs.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/jazz.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/jazz.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
               </Box>
               <h3>East</h3>
               <Box sx={teamsContainerStyle}>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/hawks.png" sx={teamImageStyle} />
-                </Box>
-                <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/celtics.png" sx={teamImageStyle} />
-                </Box>
-                <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/nets.png" sx={teamImageStyle} />
-                </Box>
-                <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/hornets.png" sx={teamImageStyle} />
-                </Box>
-                <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/bulls.png" sx={teamImageStyle} />
-                </Box>
-                <Box sx={imageContainerStyle}>
-                  <Box
+                  <Image
                     component="img"
-                    src="/cavaliers.png"
-                    sx={teamImageStyle}
+                    src="/hawks.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
                   />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/pistons.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/celtics.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/pacers.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/nets.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/heat.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/hornets.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/bucks.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/bulls.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/knicks.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/cavaliers.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/magic.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/pistons.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/76ers.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/pacers.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/raptors.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/heat.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
                 <Box sx={imageContainerStyle}>
-                  <Box component="img" src="/wizards.png" sx={teamImageStyle} />
+                  <Image
+                    component="img"
+                    src="/bucks.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image
+                    component="img"
+                    src="/knicks.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image
+                    component="img"
+                    src="/magic.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image
+                    component="img"
+                    src="/76ers.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image
+                    component="img"
+                    src="/raptors.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image
+                    component="img"
+                    src="/wizards.png"
+                    width={100}
+                    height={100}
+                    style={teamImageStyle}
+                  />
                 </Box>
               </Box>
             </Box>
