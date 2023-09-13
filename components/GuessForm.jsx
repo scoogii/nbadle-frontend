@@ -1,14 +1,7 @@
 import { Autocomplete, Button, Stack } from "@mui/joy";
 import styles from "../styles/Home.module.css";
 
-const GuessForm = ({
-  handleGuessSubmit,
-  playerNames,
-  guess,
-  guesses,
-  setGuess,
-  setGuesses,
-}) => {
+const GuessForm = ({ handleGuessSubmit, playerNames, guess, setGuess }) => {
   return (
     <form onSubmit={handleGuessSubmit}>
       <Stack spacing={1}>
