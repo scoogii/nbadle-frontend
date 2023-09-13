@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("/balls_2.jpg");
+  background-image: url("/balls_2.webp");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -30,11 +30,11 @@
 .title {
   text-align: center;
   opacity: 1;
-  animation: fadein 4s;
+  animation: fadein 0.7s;
 }
 
 .smallTitle {
-  animation: fadein 6s;
+  animation: fadein 1s;
 }
 
 @keyframes fadein {
@@ -170,7 +170,7 @@
 
 .scaleButton:hover {
   cursor: pointer;
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
 
 .bgButton {

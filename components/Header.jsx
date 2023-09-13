@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import { Box, Tooltip } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
+import Image from "next/image";
 
 const Header = ({
   setIsShown,
@@ -62,11 +63,11 @@ const Header = ({
           flex: "1 0 auto",
         }}
       >
-        <img
+        <Image
           src="/basketball.png"
           className={styles.rotate}
-          width="30px"
-          height="30px"
+          width={30}
+          height={30}
           alt="basketball"
         />
         <Button
@@ -80,11 +81,11 @@ const Header = ({
         >
           NBAdle
         </Button>
-        <img
+        <Image
           src="/basketball.png"
           className={styles.rotate}
-          width="30px"
-          height="30px"
+          width={30}
+          height={30}
           alt="basketball"
         />
       </Box>
