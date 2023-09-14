@@ -35,7 +35,7 @@ const Header = ({
       }}
       sx={{
         height: { xs: 60, sm: 70, md: 70, lg: 75 },
-        marginBottom: "3vh",
+        marginBottom: { xs: "0vh", sm: "3vh" },
       }}
     >
       <Tooltip title="Need Help?">

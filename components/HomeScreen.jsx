@@ -15,7 +15,7 @@ const HomeScreen = ({ isShown, gameFinished, onStartGameClickHandler }) => {
           }}
           sx={{
             minHeight: {
-              xs: "calc(100vh - 120px - 6vh)",
+              xs: "calc(100vh - 120px)",
               sm: "calc(100vh - 140px - 6vh)",
               md: "calc(100vh - 140px - 6vh)",
               lg: "calc(100vh - 150px - 6vh)",
@@ -27,6 +27,7 @@ const HomeScreen = ({ isShown, gameFinished, onStartGameClickHandler }) => {
             className={styles.smallTitle}
             style={{
               marginBottom: "5vh",
+              textAlign: "center",
             }}
           >
             The NBA Player Guessing Game

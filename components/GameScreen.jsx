@@ -38,7 +38,7 @@ const GameScreen = ({
           }}
           sx={{
             minHeight: {
-              xs: "calc(100vh - 120px - 6vh)",
+              xs: "calc(100vh - 120px)",
               sm: "calc(100vh - 140px - 6vh)",
               md: "calc(100vh - 70px - 4vh)",
               lg: "calc(100vh - 70px - 2vh)",

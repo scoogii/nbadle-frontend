@@ -17,7 +17,7 @@ const Footer = () => {
       }}
       sx={{
         height: { xs: 60, sm: 70, md: 70, lg: 75 },
-        marginTop: "3vh",
+        marginTop: { xs: "0vh", sm: "3vh" },
       }}
     >
       <span style={{ textAlign: "center" }}>
