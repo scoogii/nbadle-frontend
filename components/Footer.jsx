@@ -16,7 +16,7 @@ const Footer = () => {
         boxShadow: "0px -5px #8f102f",
       }}
       sx={{
-        height: { xs: 60, sm: 70, lg: 85 },
+        height: { xs: 60, sm: 70, md: 70, lg: 75 },
         marginTop: "3vh",
       }}
     >

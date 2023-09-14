@@ -10,8 +10,6 @@ const HintButton = ({ hintClicked, handleHintPress }) => {
       onClick={handleHintPress}
       sx={{
         color: "#e08114",
-        marginTop: "1vh",
-        marginBottom: "2vh",
         background: "transparent",
       }}
       className={styles.scaleButton}

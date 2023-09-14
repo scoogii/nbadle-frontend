@@ -8,8 +8,8 @@ const Lives = ({ guesses }) => {
         component="img"
         src="/heart.png"
         sx={{
-          maxWidth: { xs: "20px", sm: "25px", md: "30px", lg: "40px" },
-          maxHeight: { xs: "20px", sm: "25px", md: "30px", lg: "40px" },
+          maxWidth: { xs: "20px", sm: "25px", md: "25px", lg: "25px" },
+          maxHeight: { xs: "20px", sm: "25px", md: "25px", lg: "25px" },
         }}
       />,
     );

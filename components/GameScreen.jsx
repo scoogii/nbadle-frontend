@@ -40,8 +40,8 @@ const GameScreen = ({
             minHeight: {
               xs: "calc(100vh - 120px - 6vh)",
               sm: "calc(100vh - 140px - 6vh)",
-              md: "calc(100vh - 140px - 6vh)",
-              lg: "calc(100vh - 80px - 2vh)",
+              md: "calc(100vh - 70px - 4vh)",
+              lg: "calc(100vh - 70px - 2vh)",
             },
             marginTop: { lg: "-2vh" },
             marginBottom: { lg: "-2vh" },

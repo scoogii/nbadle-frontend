@@ -18,7 +18,7 @@ const HomeScreen = ({ isShown, gameFinished, onStartGameClickHandler }) => {
               xs: "calc(100vh - 120px - 6vh)",
               sm: "calc(100vh - 140px - 6vh)",
               md: "calc(100vh - 140px - 6vh)",
-              lg: "calc(100vh - 170px - 6vh)",
+              lg: "calc(100vh - 150px - 6vh)",
             },
           }}
         >
