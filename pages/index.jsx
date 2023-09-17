@@ -68,7 +68,7 @@ export default function Home() {
       "https://nbadle-backend.onrender.com/api/getplayer",
       {
         method: "GET",
-      },
+      }
     );
     const data = await response.json();
 
@@ -157,7 +157,7 @@ export default function Home() {
         "https://nbadle-backend.onrender.com/api/getnames",
         {
           method: "GET",
-        },
+        }
       );
       const data = await response.json();
 
@@ -201,9 +201,29 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>NBAdle</title>
-        <link rel="icon" href="/basketball.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <meta
+          name="description"
+          content="Play the NBA player guessing game by Christian and Bud. You have 8 chances to correctly guess the randomly chosen NBA player!"
+        />
       </Head>
-
       <AlertBar
         isOpen={alertOpen}
         handleClose={() => {
@@ -211,17 +231,14 @@ export default function Home() {
         }}
         message={alertMessage}
       />
-
       <HowToPlayModal
         howToPlayOpen={howToPlayOpen}
         setHowToPlayOpen={setHowToPlayOpen}
       />
-
       <CheatSheetModal
         cheatSheetOpen={cheatSheetOpen}
         setCheatSheetOpen={setCheatSheetOpen}
       />
-
       {/* Header */}
       <Header
         setIsShown={setIsShown}
@@ -230,7 +247,6 @@ export default function Home() {
         setHowToPlayOpen={setHowToPlayOpen}
         setCheatSheetOpen={setCheatSheetOpen}
       />
-
       {/* Content container */}
       <Box>
         {/* If game has not started, show home screen */}
@@ -277,25 +293,14 @@ export default function Home() {
           onStartGameClickHandler={onStartGameClickHandler}
         />
       </Box>
-
       <Footer />
-
       <style jsx global>{`
         html,
         body {
           padding: 0;
           margin: 0;
-          font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            Segoe UI,
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            Fira Sans,
-            Droid Sans,
-            Helvetica Neue,
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
         }
       `}</style>
