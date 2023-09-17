@@ -55,7 +55,7 @@ const HowToPlayModal = ({ howToPlayOpen, setHowToPlayOpen }) => {
               }}
             >
               <h3 style={{ textAlign: "center" }}>How The Game Works</h3>• Given{" "}
-              <span style={{ fontWeight: "bold" }}>6 attempts</span>, your aim
+              <span style={{ fontWeight: "bold" }}>8 attempts</span>, your aim
               is to guess the{" "}
               <span style={{ fontWeight: "bold" }}>mystery NBA player</span>
               <br />
