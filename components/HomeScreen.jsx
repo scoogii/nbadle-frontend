@@ -33,24 +33,49 @@ const HomeScreen = ({ isShown, gameFinished, onStartGameClickHandler }) => {
             The NBA Player Guessing Game
           </h2>
 
-          <Button
+          <Box
             sx={{
-              width: { sm: 120, md: 150, lg: 200 },
-              height: { xs: 60, md: 70, lg: 70 },
-              color: "white",
-              borderRadius: "14px",
+              display: "flex",
+              gap: 5,
             }}
-            variant="contained"
-            style={{
-              background: "#62cc87",
-              fontSize: "11pt",
-              verticalAlign: "middle",
-            }}
-            className={styles.bgButton}
-            onClick={onStartGameClickHandler}
           >
-            Start Game
-          </Button>
+            <Button
+              sx={{
+                width: { xs: 110, sm: 120, md: 150, lg: 200 },
+                height: { xs: 60, md: 70, lg: 70 },
+                color: "white",
+                borderRadius: "14px",
+              }}
+              variant="contained"
+              style={{
+                background: "#62cc87",
+                fontSize: "11pt",
+                verticalAlign: "middle",
+              }}
+              className={styles.bgButton}
+              onClick={onStartGameClickHandler}
+            >
+              Daily
+            </Button>
+            <Button
+              sx={{
+                width: { xs: 110, sm: 120, md: 150, lg: 200 },
+                height: { xs: 60, md: 70, lg: 70 },
+                color: "white",
+                borderRadius: "14px",
+              }}
+              variant="contained"
+              style={{
+                background: "#ffad54",
+                fontSize: "11pt",
+                verticalAlign: "middle",
+              }}
+              className={styles.bgButton}
+              onClick={onStartGameClickHandler}
+            >
+              Unlimited
+            </Button>
+          </Box>
         </Box>
       ) : null}
     </>
