@@ -7,8 +7,6 @@ import Footer from "../components/Footer";
 import HomeScreen from "../components/HomeScreen";
 // MUI
 import { Box } from "@mui/material";
-import GameScreen from "../components/GameScreen";
-import WinLoseModal from "../components/WinLoseModal";
 import HowToPlayModal from "../components/HowToPlayModal";
 import AlertBar from "../components/AlertBar";
 import CheatSheetModal from "../components/CheatSheetModal";
@@ -35,7 +33,6 @@ export default function Home() {
   ]);
 
   const [playerNames, setPlayerNames] = useState([]); // Set player names
-  const [isShown, setIsShown] = useState(false); // Player data visibility
   const [gameFinished, setGameFinished] = useState(false); // Game is finished or not
   const [gameWon, setGameWon] = useState(false);
 
@@ -90,7 +87,6 @@ export default function Home() {
   const cleanup = () => {
     setGuess("");
     setGuesses([]);
-    setIsShown(true);
     setHintClicked(false);
     setGameFinished(false);
     setGameWon(false);
@@ -241,7 +237,6 @@ export default function Home() {
       />
       {/* Header */}
       <Header
-        setIsShown={setIsShown}
         setGameFinished={setGameFinished}
         setGuesses={setGuesses}
         setHowToPlayOpen={setHowToPlayOpen}
@@ -250,48 +245,7 @@ export default function Home() {
       {/* Content container */}
       <Box>
         {/* If game has not started, show home screen */}
-        <HomeScreen
-          isShown={isShown}
-          gameFinished={gameFinished}
-          onStartGameClickHandler={onStartGameClickHandler}
-        />
-
-        {/* If game has started, show game screen */}
-        <GameScreen
-          isShown={isShown}
-          gameFinished={gameFinished}
-          handleGuessSubmit={handleGuessSubmit}
-          playerNames={playerNames}
-          guess={guess}
-          setGuess={setGuess}
-          setGuesses={setGuesses}
-          handleHintPress={handleHintPress}
-          hintClicked={hintClicked}
-          guesses={guesses}
-          guessRef={guessRef}
-          hintColumns={hintColumns}
-          setHintColumns={setHintColumns}
-          playerTeamName={playerTeamName}
-          playerConference={playerConference}
-          playerAge={playerAge}
-          playerPos={playerPos}
-          playerNo={playerNo}
-          playerDraftNo={playerDraftNo}
-          onStartGameClickHandler={onStartGameClickHandler}
-        />
-
-        {/* Win Lose Modals */}
-        <WinLoseModal
-          gameFinished={gameFinished}
-          gameWon={gameWon}
-          winOpen={winOpen}
-          loseOpen={loseOpen}
-          setWinOpen={setWinOpen}
-          setLoseOpen={setLoseOpen}
-          playerHeadshot={playerHeadshot}
-          playerFullName={playerFullName}
-          onStartGameClickHandler={onStartGameClickHandler}
-        />
+        <HomeScreen onStartGameClickHandler={onStartGameClickHandler} />
       </Box>
       <Footer />
       <style jsx global>{`
