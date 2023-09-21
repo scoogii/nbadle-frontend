@@ -2,12 +2,29 @@ import { Box } from "@mui/joy";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
+import HowToPlayModal from "../components/HowToPlayModal";
+import CheatSheetModal from "../components/CheatSheetModal";
+import { useState } from "react";
 
 const Unlimited = () => {
+  const [howToPlayOpen, setHowToPlayOpen] = useState(false);
+  const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
+
   return (
     <>
+      <HowToPlayModal
+        howToPlayOpen={howToPlayOpen}
+        setHowToPlayOpen={setHowToPlayOpen}
+      />
+      <CheatSheetModal
+        cheatSheetOpen={cheatSheetOpen}
+        setCheatSheetOpen={setCheatSheetOpen}
+      />
       <div className={styles.container}>
-        <Header />
+        <Header
+          setHowToPlayOpen={setHowToPlayOpen}
+          setCheatSheetOpen={setCheatSheetOpen}
+        />
         <Box
           style={{
             display: "flex",
@@ -28,25 +45,6 @@ const Unlimited = () => {
         ></Box>
         <Footer />
       </div>
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            Segoe UI,
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            Fira Sans,
-            Droid Sans,
-            Helvetica Neue,
-            sans-serif;
-        }
-      `}</style>
     </>
   );
 };

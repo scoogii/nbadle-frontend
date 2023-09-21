@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/joy";
 import Link from "next/link";
 
-const HomeScreen = ({ onStartGameClickHandler }) => {
+const HomeScreen = () => {
   return (
     <>
       <Box
@@ -55,7 +55,6 @@ const HomeScreen = ({ onStartGameClickHandler }) => {
             className={styles.bgButton}
             href="/daily"
             component={Link}
-            onClick={onStartGameClickHandler}
           >
             Daily
           </Button>
@@ -75,7 +74,6 @@ const HomeScreen = ({ onStartGameClickHandler }) => {
             className={styles.bgButton}
             href="/unlimited"
             component={Link}
-            onClick={onStartGameClickHandler}
           >
             Unlimited
           </Button>
