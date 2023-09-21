@@ -1,13 +1,15 @@
 import { Box } from "@mui/joy";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import GameScreen from "../components/GameScreen";
 import AlertBar from "../components/AlertBar";
 import styles from "../styles/Home.module.css";
 import WinLoseModal from "../components/WinLoseModal";
 import HowToPlayModal from "../components/HowToPlayModal";
 import CheatSheetModal from "../components/CheatSheetModal";
 import { useEffect, useRef, useState } from "react";
+import PlayActions from "../components/PlayActions";
+import ColumnHeadings from "../components/ColumnHeadings";
+import GuessGrid from "../components/GuessGrid";
 
 const Daily = () => {
   // Player data
@@ -91,12 +93,6 @@ const Daily = () => {
       { name: "player_number" },
       { name: "draft_number" },
     ]);
-  };
-
-  // Start game handler
-  const onStartGameClickHandler = () => {
-    cleanup();
-    getPlayerData();
   };
 
   // Guess event handler
@@ -231,16 +227,22 @@ const Daily = () => {
             marginBottom: { lg: "-2vh" },
           }}
         >
-          {/* If game has started, show game screen */}
-          <GameScreen
+          {/* Play buttons: autocomplete, guess, hint */}
+          <PlayActions
             gameFinished={gameFinished}
             handleGuessSubmit={handleGuessSubmit}
             playerNames={playerNames}
             guess={guess}
+            guesses={guesses}
             setGuess={setGuess}
             setGuesses={setGuesses}
-            handleHintPress={handleHintPress}
             hintClicked={hintClicked}
+            handleHintPress={handleHintPress}
+          />
+
+          {/* Headings and Guess Grid */}
+          <ColumnHeadings />
+          <GuessGrid
             guesses={guesses}
             guessRef={guessRef}
             hintColumns={hintColumns}
@@ -251,7 +253,6 @@ const Daily = () => {
             playerPos={playerPos}
             playerNo={playerNo}
             playerDraftNo={playerDraftNo}
-            onStartGameClickHandler={onStartGameClickHandler}
           />
 
           {/* Win Lose Modals */}

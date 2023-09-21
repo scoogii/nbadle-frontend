@@ -213,25 +213,7 @@ const Unlimited = () => {
           setHowToPlayOpen={setHowToPlayOpen}
           setCheatSheetOpen={setCheatSheetOpen}
         />
-        <Box
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          sx={{
-            minHeight: {
-              xs: "calc(100vh - 120px)",
-              sm: "calc(100vh - 140px - 6vh)",
-              md: "calc(100vh - 70px - 4vh)",
-              lg: "calc(100vh - 70px - 2vh)",
-            },
-            marginTop: { lg: "-2vh" },
-            marginBottom: { lg: "-2vh" },
-          }}
-        >
-          {/* If game has started, show game screen */}
+        <Box>
           <GameScreen
             gameFinished={gameFinished}
             handleGuessSubmit={handleGuessSubmit}
