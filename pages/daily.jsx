@@ -7,23 +7,39 @@ import WinLoseModal from "../components/WinLoseModal";
 import HowToPlayModal from "../components/HowToPlayModal";
 import CheatSheetModal from "../components/CheatSheetModal";
 import { useEffect, useRef, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 import PlayActions from "../components/PlayActions";
 import ColumnHeadings from "../components/ColumnHeadings";
 import GuessGrid from "../components/GuessGrid";
 
 const Daily = () => {
   // Player data
-  const [playerHeadshot, setPlayerHeadshot] = useState(null);
-  const [playerFullName, setPlayerFullName] = useState("");
-  const [playerTeamName, setPlayerTeamName] = useState("");
-  const [playerConference, setPlayerConference] = useState("");
-  const [playerAge, setPlayerAge] = useState(0);
-  const [playerPos, setPlayerPos] = useState("");
-  const [playerNo, setPlayerNo] = useState(0);
-  const [playerDraftNo, setPlayerDraftNo] = useState(null);
+  const [playerHeadshot, setPlayerHeadshot] = useLocalStorage(
+    "playerHeadshot",
+    null
+  );
+  const [playerFullName, setPlayerFullName] = useLocalStorage(
+    "playerFullName",
+    ""
+  );
+  const [playerTeamName, setPlayerTeamName] = useLocalStorage(
+    "playerTeamName",
+    ""
+  );
+  const [playerConference, setPlayerConference] = useLocalStorage(
+    "playerConference",
+    ""
+  );
+  const [playerAge, setPlayerAge] = useLocalStorage("playerAge", 0);
+  const [playerPos, setPlayerPos] = useLocalStorage("playerPos", "");
+  const [playerNo, setPlayerNo] = useLocalStorage("playerNo", 0);
+  const [playerDraftNo, setPlayerDraftNo] = useLocalStorage(
+    "playerDraftNo",
+    null
+  );
 
   // Columns that are valid for hints
-  const [hintColumns, setHintColumns] = useState([
+  const [hintColumns, setHintColumns] = useLocalStorage("hintColumns", [
     { name: "team_name" },
     { name: "conference" },
     { name: "age" },
@@ -33,13 +49,16 @@ const Daily = () => {
   ]);
 
   const [playerNames, setPlayerNames] = useState([]); // Set player names
-  const [gameFinished, setGameFinished] = useState(false); // Game is finished or not
+  const [gameFinished, setGameFinished] = useLocalStorage(
+    "gameFinished",
+    false
+  ); // Game is finished or not
   const [gameWon, setGameWon] = useState(false);
 
   // Guesses and hints
   const guessRef = useRef(null);
   const [guess, setGuess] = useState("");
-  const [guesses, setGuesses] = useState([]);
+  const [guesses, setGuesses] = useLocalStorage("guesses", []);
 
   // Modals
   const [winOpen, setWinOpen] = useState(false);
@@ -48,7 +67,7 @@ const Daily = () => {
   const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
 
   // Hint button status
-  const [hintClicked, setHintClicked] = useState(false);
+  const [hintClicked, setHintClicked] = useLocalStorage("hintClicked", false);
 
   // Alert bar for invalid actions
   const [alertOpen, setAlertOpen] = useState(false);
@@ -57,10 +76,10 @@ const Daily = () => {
   // Retreive player data function
   const getPlayerData = async () => {
     const response = await fetch(
-      "https://nbadle-backend.onrender.com/api/getplayer",
+      "https://nbadle-backend.onrender.com/api/getdailyplayer",
       {
         method: "GET",
-      },
+      }
     );
     const data = await response.json();
 
@@ -141,7 +160,7 @@ const Daily = () => {
         "https://nbadle-backend.onrender.com/api/getnames",
         {
           method: "GET",
-        },
+        }
       );
       const data = await response.json();
 
