@@ -73,30 +73,6 @@ const Daily = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  // Retreive player data function
-  const getPlayerData = async () => {
-    const response = await fetch(
-      "https://nbadle-backend.onrender.com/api/getdailyplayer",
-      {
-        method: "GET",
-      }
-    );
-    const data = await response.json();
-
-    if (data.error) {
-      alert(data.error);
-      return;
-    }
-    setPlayerHeadshot(data["headshot"]);
-    setPlayerFullName(data["full_name"]);
-    setPlayerTeamName(data["team_name"]);
-    setPlayerConference(data["conference"]);
-    setPlayerAge(data["age"]);
-    setPlayerPos(data["position"]);
-    setPlayerNo(data["player_number"]);
-    setPlayerDraftNo(data["draft_number"]);
-  };
-
   // Game cleanup function
   const cleanup = () => {
     setGuess("");
@@ -175,9 +151,36 @@ const Daily = () => {
 
   // If mystery player has not been set, set one
   useEffect(() => {
-    if (playerFullName === "") {
-      getPlayerData();
-    }
+    // Retreive player data function
+    const getPlayerData = async () => {
+      const response = await fetch(
+        "https://nbadle-backend.onrender.com/api/getdailyplayer",
+        {
+          method: "GET",
+        }
+      );
+      const data = await response.json();
+
+      if (data.error) {
+        alert(data.error);
+        return;
+      }
+      console.log(playerFullName);
+      console.log(data["full_name"]);
+      if (playerFullName !== data["full_name"]) {
+        console.log("Cleaning up");
+        cleanup();
+      }
+      setPlayerHeadshot(data["headshot"]);
+      setPlayerFullName(data["full_name"]);
+      setPlayerTeamName(data["team_name"]);
+      setPlayerConference(data["conference"]);
+      setPlayerAge(data["age"]);
+      setPlayerPos(data["position"]);
+      setPlayerNo(data["player_number"]);
+      setPlayerDraftNo(data["draft_number"]);
+    };
+    getPlayerData();
   }, []);
 
   // If guesses is 6 and player not guessed, game is lost
