@@ -3,6 +3,7 @@ import { Paper } from "@mui/material";
 import Guess from "./Guess";
 
 const GuessGrid = ({
+  correctPlayerName,
   guesses,
   guessRef,
   hintColumns,
@@ -33,6 +34,7 @@ const GuessGrid = ({
           <Guess
             hints={hintColumns}
             setHintColumns={setHintColumns}
+            correctPlayerName={correctPlayerName}
             guess={guess}
             playerTeam={playerTeamName}
             playerConference={playerConference}

@@ -269,6 +269,7 @@ const Daily = () => {
             {/* Headings and Guess Grid */}
             <ColumnHeadings />
             <GuessGrid
+              correctPlayerName={playerFullName}
               guesses={guesses}
               guessRef={guessRef}
               hintColumns={hintColumns}
