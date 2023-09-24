@@ -1,3 +1,4 @@
+"use client";
 import { Box } from "@mui/joy";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -13,29 +14,33 @@ import ColumnHeadings from "../components/ColumnHeadings";
 import GuessGrid from "../components/GuessGrid";
 
 const Daily = () => {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   // Player data
   const [playerHeadshot, setPlayerHeadshot] = useLocalStorage(
     "playerHeadshot",
-    null
+    null,
   );
   const [playerFullName, setPlayerFullName] = useLocalStorage(
     "playerFullName",
-    ""
+    "",
   );
   const [playerTeamName, setPlayerTeamName] = useLocalStorage(
     "playerTeamName",
-    ""
+    "",
   );
   const [playerConference, setPlayerConference] = useLocalStorage(
     "playerConference",
-    ""
+    "",
   );
   const [playerAge, setPlayerAge] = useLocalStorage("playerAge", 0);
   const [playerPos, setPlayerPos] = useLocalStorage("playerPos", "");
   const [playerNo, setPlayerNo] = useLocalStorage("playerNo", 0);
   const [playerDraftNo, setPlayerDraftNo] = useLocalStorage(
     "playerDraftNo",
-    null
+    null,
   );
 
   // Columns that are valid for hints
@@ -51,7 +56,7 @@ const Daily = () => {
   const [playerNames, setPlayerNames] = useState([]); // Set player names
   const [gameFinished, setGameFinished] = useLocalStorage(
     "gameFinished",
-    false
+    false,
   ); // Game is finished or not
   const [gameWon, setGameWon] = useState(false);
 
@@ -136,7 +141,7 @@ const Daily = () => {
         "https://nbadle-backend.onrender.com/api/getnames",
         {
           method: "GET",
-        }
+        },
       );
       const data = await response.json();
 
@@ -157,7 +162,7 @@ const Daily = () => {
         "https://nbadle-backend.onrender.com/api/getdailyplayer",
         {
           method: "GET",
-        }
+        },
       );
       const data = await response.json();
 
@@ -165,8 +170,6 @@ const Daily = () => {
         alert(data.error);
         return;
       }
-      console.log(playerFullName);
-      console.log(data["full_name"]);
       if (playerFullName !== data["full_name"]) {
         console.log("Cleaning up");
         cleanup();
@@ -226,71 +229,73 @@ const Daily = () => {
         cheatSheetOpen={cheatSheetOpen}
         setCheatSheetOpen={setCheatSheetOpen}
       />
-      <div className={styles.container}>
-        <Header
-          setHowToPlayOpen={setHowToPlayOpen}
-          setCheatSheetOpen={setCheatSheetOpen}
-        />
-        <Box
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          sx={{
-            minHeight: {
-              xs: "calc(100vh - 120px)",
-              sm: "calc(100vh - 140px - 6vh)",
-              md: "calc(100vh - 70px - 4vh)",
-              lg: "calc(100vh - 70px - 2vh)",
-            },
-            marginTop: { lg: "-2vh" },
-            marginBottom: { lg: "-2vh" },
-          }}
-        >
-          {/* Play buttons: autocomplete, guess, hint */}
-          <PlayActions
-            gameFinished={gameFinished}
-            handleGuessSubmit={handleGuessSubmit}
-            playerNames={playerNames}
-            guess={guess}
-            guesses={guesses}
-            setGuess={setGuess}
-            setGuesses={setGuesses}
-            hintClicked={hintClicked}
-            handleHintPress={handleHintPress}
+      {isClient ? (
+        <div className={styles.container}>
+          <Header
+            setHowToPlayOpen={setHowToPlayOpen}
+            setCheatSheetOpen={setCheatSheetOpen}
           />
+          <Box
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            sx={{
+              minHeight: {
+                xs: "calc(100vh - 120px)",
+                sm: "calc(100vh - 140px - 6vh)",
+                md: "calc(100vh - 70px - 4vh)",
+                lg: "calc(100vh - 70px - 2vh)",
+              },
+              marginTop: { lg: "-2vh" },
+              marginBottom: { lg: "-2vh" },
+            }}
+          >
+            {/* Play buttons: autocomplete, guess, hint */}
+            <PlayActions
+              gameFinished={gameFinished}
+              handleGuessSubmit={handleGuessSubmit}
+              playerNames={playerNames}
+              guess={guess}
+              guesses={guesses}
+              setGuess={setGuess}
+              setGuesses={setGuesses}
+              hintClicked={hintClicked}
+              handleHintPress={handleHintPress}
+            />
 
-          {/* Headings and Guess Grid */}
-          <ColumnHeadings />
-          <GuessGrid
-            guesses={guesses}
-            guessRef={guessRef}
-            hintColumns={hintColumns}
-            setHintColumns={setHintColumns}
-            playerTeamName={playerTeamName}
-            playerConference={playerConference}
-            playerAge={playerAge}
-            playerPos={playerPos}
-            playerNo={playerNo}
-            playerDraftNo={playerDraftNo}
-          />
+            {/* Headings and Guess Grid */}
+            <ColumnHeadings />
+            <GuessGrid
+              guesses={guesses}
+              guessRef={guessRef}
+              hintColumns={hintColumns}
+              setHintColumns={setHintColumns}
+              playerTeamName={playerTeamName}
+              playerConference={playerConference}
+              playerAge={playerAge}
+              playerPos={playerPos}
+              playerNo={playerNo}
+              playerDraftNo={playerDraftNo}
+            />
 
-          {/* Win Lose Modals */}
-          <WinLoseModal
-            gameFinished={gameFinished}
-            gameWon={gameWon}
-            winOpen={winOpen}
-            loseOpen={loseOpen}
-            setWinOpen={setWinOpen}
-            setLoseOpen={setLoseOpen}
-            playerHeadshot={playerHeadshot}
-            playerFullName={playerFullName}
-          />
-        </Box>
-        <Footer />
-      </div>
+            {/* Win Lose Modals */}
+            <WinLoseModal
+              gameFinished={gameFinished}
+              gameWon={gameWon}
+              winOpen={winOpen}
+              loseOpen={loseOpen}
+              setWinOpen={setWinOpen}
+              setLoseOpen={setLoseOpen}
+              playerHeadshot={playerHeadshot}
+              playerFullName={playerFullName}
+            />
+          </Box>
+          <Footer />
+        </div>
+      ) : null}
     </>
   );
 };
