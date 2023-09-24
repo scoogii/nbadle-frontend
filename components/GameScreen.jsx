@@ -17,6 +17,7 @@ const GameScreen = ({
   guessRef,
   hintColumns,
   setHintColumns,
+  playerCorrectName,
   playerTeamName,
   playerConference,
   playerAge,
@@ -65,6 +66,7 @@ const GameScreen = ({
           guessRef={guessRef}
           hintColumns={hintColumns}
           setHintColumns={setHintColumns}
+          playerCorrectName={playerCorrectName}
           playerTeamName={playerTeamName}
           playerConference={playerConference}
           playerAge={playerAge}

@@ -13,7 +13,7 @@ import { useLocalStorage } from "usehooks-ts";
 const Guess = ({
   hints,
   setHintColumns,
-  correctPlayerName,
+  playerCorrectName,
   guess,
   playerTeam,
   playerConference,
@@ -38,23 +38,18 @@ const Guess = ({
         `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${guess}`,
         {
           method: "GET",
-        }
+        },
       );
       const data = await response.json();
       return data;
     } else {
       const response = await fetch(
-        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${correctPlayerName}`
+        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${playerCorrectName}`,
       );
-
-      if (hintColumn === "") {
-        setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
-      }
-      console.log(hintColumn);
 
       const data = await response.json();
       for (const column in data) {
-        if (column !== hintColumn["name"]) {
+        if (column !== hintColumn) {
           data[column] = "";
         }
       }
@@ -78,7 +73,32 @@ const Guess = ({
       .finally(setIsLoading(false));
   }, []);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const toRemove = [];
+    // If any guesses are correct, remove them from hintColumns
+    if (playerTeam === teamName) {
+      toRemove.push("team_name");
+    }
+    if (playerConference === conference) {
+      toRemove.push("conference");
+    }
+    if (playerAge === age) {
+      toRemove.push("age");
+    }
+    if (playerPos === pos) {
+      toRemove.push("position");
+    }
+    if (playerNo === parseInt(no)) {
+      toRemove.push("player_number");
+    }
+    if (playerDraftNo === draftNo) {
+      toRemove.push("draft_number");
+    }
+    if (hintColumn === "" || !hints.includes(hintColumn)) {
+      setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
+    }
+    setHintColumns(hints.filter((item) => !toRemove.includes(item)));
+  }, [teamName, conference, age, pos, no, draftNo, hints]);
 
   const columnStyle = {
     display: "flex",

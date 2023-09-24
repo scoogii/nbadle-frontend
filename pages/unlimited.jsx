@@ -22,12 +22,12 @@ const Unlimited = () => {
 
   // Columns that are valid for hints
   const [hintColumns, setHintColumns] = useState([
-    { name: "team_name" },
-    { name: "conference" },
-    { name: "age" },
-    { name: "position" },
-    { name: "player_number" },
-    { name: "draft_number" },
+    "team_name",
+    "conference",
+    "age",
+    "position",
+    "player_number",
+    "draft_number",
   ]);
 
   const [playerNames, setPlayerNames] = useState([]); // Set player names
@@ -84,12 +84,12 @@ const Unlimited = () => {
     setGameFinished(false);
     setGameWon(false);
     setHintColumns([
-      { name: "team_name" },
-      { name: "conference" },
-      { name: "age" },
-      { name: "position" },
-      { name: "player_number" },
-      { name: "draft_number" },
+      "team_name",
+      "conference",
+      "age",
+      "position",
+      "player_number",
+      "draft_number",
     ]);
   };
 
@@ -227,6 +227,7 @@ const Unlimited = () => {
             guessRef={guessRef}
             hintColumns={hintColumns}
             setHintColumns={setHintColumns}
+            playerCorrectName={playerFullName}
             playerTeamName={playerTeamName}
             playerConference={playerConference}
             playerAge={playerAge}

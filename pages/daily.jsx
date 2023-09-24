@@ -45,12 +45,12 @@ const Daily = () => {
 
   // Columns that are valid for hints
   const [hintColumns, setHintColumns] = useLocalStorage("hintColumns", [
-    { name: "team_name" },
-    { name: "conference" },
-    { name: "age" },
-    { name: "position" },
-    { name: "player_number" },
-    { name: "draft_number" },
+    "team_name",
+    "conference",
+    "age",
+    "position",
+    "player_number",
+    "draft_number",
   ]);
 
   const [playerNames, setPlayerNames] = useState([]); // Set player names
@@ -86,12 +86,12 @@ const Daily = () => {
     setGameFinished(false);
     setGameWon(false);
     setHintColumns([
-      { name: "team_name" },
-      { name: "conference" },
-      { name: "age" },
-      { name: "position" },
-      { name: "player_number" },
-      { name: "draft_number" },
+      "team_name",
+      "conference",
+      "age",
+      "position",
+      "player_number",
+      "draft_number",
     ]);
   };
 
@@ -158,12 +158,9 @@ const Daily = () => {
   useEffect(() => {
     // Retreive player data function
     const getPlayerData = async () => {
-      const response = await fetch(
-        "https://nbadle-backend.onrender.com/api/getdailyplayer",
-        {
-          method: "GET",
-        },
-      );
+      const response = await fetch("http://127.0.0.1:5000/api/getdailyplayer", {
+        method: "GET",
+      });
       const data = await response.json();
 
       if (data.error) {
@@ -171,7 +168,6 @@ const Daily = () => {
         return;
       }
       if (playerFullName !== data["full_name"]) {
-        console.log("Cleaning up");
         cleanup();
       }
       setPlayerHeadshot(data["headshot"]);
@@ -269,7 +265,7 @@ const Daily = () => {
             {/* Headings and Guess Grid */}
             <ColumnHeadings />
             <GuessGrid
-              correctPlayerName={playerFullName}
+              playerCorrectName={playerFullName}
               guesses={guesses}
               guessRef={guessRef}
               hintColumns={hintColumns}
