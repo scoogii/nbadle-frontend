@@ -1,8 +1,8 @@
 import { Box } from "@mui/joy";
 import PlayActions from "./PlayActions";
-import ColumnHeadings from "./ColumnHeadings";
+import ColumnHeadings from "../ColumnHeadings";
 import GuessGrid from "./GuessGrid";
-import PlayAgainButton from "./PlayAgainButton";
+import PlayAgainButton from "../PlayAgainButton";
 
 const GameScreen = ({
   gameFinished,

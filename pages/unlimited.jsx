@@ -1,7 +1,7 @@
 import { Box } from "@mui/joy";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import GameScreen from "../components/GameScreen";
+import GameScreen from "../components/unlimited/GameScreen";
 import AlertBar from "../components/AlertBar";
 import styles from "../styles/Home.module.css";
 import WinLoseModal from "../components/WinLoseModal";
@@ -46,7 +46,7 @@ const Unlimited = () => {
   const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
 
   // Hint button status
-  const [hintClicked, setHintClicked] = useState(false);
+  const [hintClicked, setHintClicked] = useState(true);
 
   // Alert bar for invalid actions
   const [alertOpen, setAlertOpen] = useState(false);
@@ -80,7 +80,7 @@ const Unlimited = () => {
   const cleanup = () => {
     setGuess("");
     setGuesses([]);
-    setHintClicked(false);
+    setHintClicked(true);
     setGameFinished(false);
     setGameWon(false);
     setHintColumns([
@@ -172,6 +172,11 @@ const Unlimited = () => {
       behavior: "smooth",
       block: "end",
     });
+
+    // Disable hint when there are 5 guesses
+    if (guesses.length === 1) {
+      setHintClicked(false);
+    }
 
     // Disable hint when there are 5 guesses
     if (guesses.length === 7) {
