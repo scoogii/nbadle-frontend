@@ -7,10 +7,10 @@ const Lives = ({ guesses }) => {
       <Box
         key={i}
         component="img"
-        src="/heart.png"
+        src="/obrien.jpeg"
         sx={{
-          maxWidth: { xs: "20px", sm: "25px", md: "25px", lg: "25px" },
-          maxHeight: { xs: "20px", sm: "2px", md: "25px", lg: "25px" },
+          maxWidth: { xs: "25px", sm: "28px", md: "30px", lg: "35px" },
+          maxHeight: { xs: "25px", sm: "28px", md: "30px", lg: "35px" },
         }}
       />,
     );
