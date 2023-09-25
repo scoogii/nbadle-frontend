@@ -1,5 +1,5 @@
 import { Box } from "@mui/joy";
-import PlayActions from "./PlayActions";
+import PlayActions from "../PlayActions";
 import ColumnHeadings from "../ColumnHeadings";
 import GuessGrid from "./GuessGrid";
 import PlayAgainButton from "../PlayAgainButton";

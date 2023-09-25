@@ -24,7 +24,7 @@ const Footer = () => {
         By&nbsp;
         <Link
           underline="none"
-          href="https://www.linkedin.com/in/bud-truong-3a742a217/"
+          href="https://github.com/budtruong"
           target="_blank"
           style={{ color: "white" }}
         >
@@ -33,7 +33,7 @@ const Footer = () => {
         &nbsp;and&nbsp;
         <Link
           underline="none"
-          href="https://www.linkedin.com/in/christianngu/"
+          href="https://github.com/scoogii"
           target="_blank"
           style={{ color: "white" }}
         >
