@@ -125,6 +125,19 @@
   }
 }
 
+.rotate {
+  animation: rotation 3s linear infinite;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 .fade {
   animation: fadein 2.5s;
 }
