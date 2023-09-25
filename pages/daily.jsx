@@ -12,6 +12,7 @@ import { useLocalStorage } from "usehooks-ts";
 import PlayActions from "../components/PlayActions";
 import ColumnHeadings from "../components/ColumnHeadings";
 import GuessGrid from "../components/GuessGrid";
+import Countdown from "../components/daily/Countdown";
 
 const Daily = () => {
   const [isClient, setIsClient] = useState(false);
@@ -78,7 +79,6 @@ const Daily = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  // Game cleanup function
   const cleanup = () => {
     setGuess("");
     setGuesses([]);
@@ -190,6 +190,15 @@ const Daily = () => {
       block: "end",
     });
 
+    // Lose condition - show lose modal and load actual player guess row
+    if (guesses.length === 8 && !gameWon) {
+      setGuesses([...guesses, playerFullName]);
+      setGameFinished(true);
+      setLoseOpen(true);
+    }
+  }, [guesses]);
+
+  useEffect(() => {
     // Disable hint when there are 5 guesses
     if (guesses.length === 7) {
       setHintClicked(true);
@@ -199,14 +208,7 @@ const Daily = () => {
     if (hintColumns.length === 0) {
       setHintClicked(true);
     }
-
-    // Lose condition - show lose modal and load actual player guess row
-    if (guesses.length === 8 && !gameWon) {
-      setGuesses([...guesses, playerFullName]);
-      setGameFinished(true);
-      setLoseOpen(true);
-    }
-  }, [guesses]);
+  }, [guesses.length]);
 
   return (
     <>
@@ -249,7 +251,7 @@ const Daily = () => {
               marginBottom: { lg: "-2vh" },
             }}
           >
-            {/* Play buttons: autocomplete, guess, hint */}
+            {gameFinished ? <Countdown /> : null}{" "}
             <PlayActions
               gameFinished={gameFinished}
               handleGuessSubmit={handleGuessSubmit}
@@ -261,7 +263,6 @@ const Daily = () => {
               hintClicked={hintClicked}
               handleHintPress={handleHintPress}
             />
-
             {/* Headings and Guess Grid */}
             <ColumnHeadings />
             <GuessGrid
@@ -277,7 +278,6 @@ const Daily = () => {
               playerNo={playerNo}
               playerDraftNo={playerDraftNo}
             />
-
             {/* Win Lose Modals */}
             <WinLoseModal
               gameFinished={gameFinished}

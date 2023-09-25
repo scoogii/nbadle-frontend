@@ -30,7 +30,10 @@ const Guess = ({
   const [no, setNo] = useState("");
   const [draftNo, setDraftNo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hintColumn, setHintColumn] = useLocalStorage("hintColumn", "");
+  const [hintColumn, setHintColumn] = useLocalStorage(
+    "hintColumn",
+    hints[Math.floor(Math.random() * hints.length)],
+  );
 
   const getGuessedPlayerData = async () => {
     if (guess !== "HINT") {
@@ -41,6 +44,7 @@ const Guess = ({
         },
       );
       const data = await response.json();
+
       return data;
     } else {
       const response = await fetch(
@@ -73,9 +77,10 @@ const Guess = ({
       .finally(setIsLoading(false));
   }, []);
 
+  // When new row is made, update possible hints player can get based on green columns if any
   useEffect(() => {
     const toRemove = [];
-    // If any guesses are correct, remove them from hintColumns
+    // If any guesses are correct, remove them from possible hints we can provide
     if (playerTeam === teamName) {
       toRemove.push("team_name");
     }
@@ -95,10 +100,12 @@ const Guess = ({
       toRemove.push("draft_number");
     }
     if (hintColumn === "" || !hints.includes(hintColumn)) {
+      // Update possible hint they can get
       setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
     }
+    // Update all the hints still possible in receiving
     setHintColumns(hints.filter((item) => !toRemove.includes(item)));
-  }, [teamName, conference, age, pos, no, draftNo, hints]);
+  }, [teamName, conference, age, pos, no, draftNo]);
 
   const columnStyle = {
     display: "flex",

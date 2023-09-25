@@ -5,11 +5,12 @@ const Lives = ({ guesses }) => {
   for (let i = 0; i < 8 - guesses.length; i++) {
     lives.push(
       <Box
+        key={i}
         component="img"
         src="/heart.png"
         sx={{
           maxWidth: { xs: "20px", sm: "25px", md: "25px", lg: "25px" },
-          maxHeight: { xs: "20px", sm: "25px", md: "25px", lg: "25px" },
+          maxHeight: { xs: "20px", sm: "2px", md: "25px", lg: "25px" },
         }}
       />,
     );
