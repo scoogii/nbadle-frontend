@@ -3,7 +3,7 @@ import Countdown from "react-countdown";
 
 const Timer = () => {
   const tomorrow = new Date();
-  tomorrow.setHours(24, 0, 0, 0);
+  tomorrow.setUTCHours(24, 0, 0, 0);
 
   return (
     <Box
