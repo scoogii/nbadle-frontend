@@ -1,6 +1,6 @@
 import styles from "../styles/Home.module.css";
 import { Box } from "@mui/material";
-import { Button } from "@mui/joy";
+import { Button, Chip } from "@mui/joy";
 import Link from "next/link";
 
 const HomeScreen = () => {
@@ -41,8 +41,8 @@ const HomeScreen = () => {
         >
           <Button
             sx={{
-              width: { xs: 90, sm: 120, md: 150, lg: 200 },
-              height: { xs: 50, md: 60, lg: 70 },
+              width: { xs: 120, sm: 140, md: 150, lg: 200 },
+              height: { xs: 50, sm: 60, md: 65, lg: 70 },
               color: "white",
               borderRadius: "14px",
             }}
@@ -56,12 +56,25 @@ const HomeScreen = () => {
             href="/daily"
             component={Link}
           >
+            <Chip
+              className={styles.newFeature}
+              sx={{
+                background: "#de1440",
+                color: "white",
+                boxShadow: "0 5px #a10e2e",
+                position: "absolute",
+                top: { xs: "-20px", md: "-15px" },
+                right: { xs: "-18px", md: "-5px" },
+              }}
+            >
+              New!
+            </Chip>
             Daily
           </Button>
           <Button
             sx={{
-              width: { xs: 90, sm: 120, md: 150, lg: 200 },
-              height: { xs: 50, md: 60, lg: 70 },
+              width: { xs: 120, sm: 140, md: 150, lg: 200 },
+              height: { xs: 50, sm: 60, md: 65, lg: 70 },
               color: "white",
               borderRadius: "14px",
             }}

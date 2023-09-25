@@ -109,16 +109,19 @@
   }
 }
 
-.rotate {
-  animation: rotation 3s linear infinite;
+.newFeature {
+  animation: scalest 1.5s linear infinite;
 }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
+@keyframes scalest {
+  0% {
+    transform: scale(1);
   }
-  to {
-    transform: rotate(359deg);
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
