@@ -61,7 +61,8 @@ const HowToPlayModal = ({ howToPlayOpen, setHowToPlayOpen }) => {
               <br />
               <br />• You have an option to use a{" "}
               <span style={{ fontWeight: "bold" }}>one time hint</span> that
-              consumes a guess, but this hint can't be used on the final guess
+              consumes a guess, but this hint can't be used on the first or
+              final guess
               <h3 style={{ textAlign: "center" }}>How Guesses Work</h3>
               • A guess will indicate how close you are to the correct player
               <br />

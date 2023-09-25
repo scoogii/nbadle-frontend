@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import PlayActions from "../components/PlayActions";
 import ColumnHeadings from "../components/ColumnHeadings";
-import GuessGrid from "../components/GuessGrid";
+import GuessGrid from "../components/daily/GuessGrid";
 import Countdown from "../components/daily/Countdown";
 
 const Daily = () => {
@@ -73,7 +73,7 @@ const Daily = () => {
   const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
 
   // Hint button status
-  const [hintClicked, setHintClicked] = useLocalStorage("hintClicked", false);
+  const [hintClicked, setHintClicked] = useLocalStorage("hintClicked", true);
 
   // Alert bar for invalid actions
   const [alertOpen, setAlertOpen] = useState(false);
@@ -82,7 +82,7 @@ const Daily = () => {
   const cleanup = () => {
     setGuess("");
     setGuesses([]);
-    setHintClicked(false);
+    setHintClicked(true);
     setGameFinished(false);
     setGameWon(false);
     setHintColumns([
@@ -158,9 +158,12 @@ const Daily = () => {
   useEffect(() => {
     // Retreive player data function
     const getPlayerData = async () => {
-      const response = await fetch("http://127.0.0.1:5000/api/getdailyplayer", {
-        method: "GET",
-      });
+      const response = await fetch(
+        "https://nbadle-backend.onrender.com/api/getdailyplayer",
+        {
+          method: "GET",
+        },
+      );
       const data = await response.json();
 
       if (data.error) {
@@ -199,6 +202,10 @@ const Daily = () => {
   }, [guesses]);
 
   useEffect(() => {
+    if (guesses.length === 1) {
+      setHintClicked(false);
+    }
+
     // Disable hint when there are 5 guesses
     if (guesses.length === 7) {
       setHintClicked(true);
@@ -270,6 +277,7 @@ const Daily = () => {
               guesses={guesses}
               guessRef={guessRef}
               hintColumns={hintColumns}
+              hintClicked={hintClicked}
               setHintColumns={setHintColumns}
               playerTeamName={playerTeamName}
               playerConference={playerConference}

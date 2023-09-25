@@ -1,17 +1,18 @@
 import { Tooltip } from "@mui/joy";
 import { Box, Paper, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import {
   checkTeam,
   checkAge,
   checkNo,
   checkDraftNo,
-} from "../utils/checkStats.js";
+} from "../../utils/checkStats.js";
 import { useLocalStorage } from "usehooks-ts";
 
 const Guess = ({
   hints,
+  hintClicked,
   setHintColumns,
   playerCorrectName,
   guess,
@@ -30,10 +31,7 @@ const Guess = ({
   const [no, setNo] = useState("");
   const [draftNo, setDraftNo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hintColumn, setHintColumn] = useLocalStorage(
-    "hintColumn",
-    hints[Math.floor(Math.random() * hints.length)],
-  );
+  const [hintColumn, setHintColumn] = useLocalStorage("hintColumn", "");
 
   const getGuessedPlayerData = async () => {
     if (guess !== "HINT") {
@@ -99,7 +97,7 @@ const Guess = ({
     if (playerDraftNo === draftNo) {
       toRemove.push("draft_number");
     }
-    if (!hints.includes(hintColumn)) {
+    if (!hints.includes(hintColumn) && !hintClicked) {
       // Update possible hint they can get
       setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
     }
