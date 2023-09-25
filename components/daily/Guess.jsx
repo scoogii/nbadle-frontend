@@ -1,17 +1,20 @@
 import { Tooltip } from "@mui/joy";
 import { Box, Paper, CircularProgress } from "@mui/material";
 import { useState, useEffect } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import {
   checkTeam,
   checkAge,
   checkNo,
   checkDraftNo,
-} from "../utils/checkStats.js";
+} from "../../utils/checkStats.js";
+import { useLocalStorage } from "usehooks-ts";
 
 const Guess = ({
   hints,
+  hintClicked,
   setHintColumns,
+  playerCorrectName,
   guess,
   playerTeam,
   playerConference,
@@ -25,9 +28,10 @@ const Guess = ({
   const [conference, setConference] = useState("");
   const [age, setAge] = useState(0);
   const [pos, setPos] = useState("");
-  const [no, setNo] = useState(0);
+  const [no, setNo] = useState("");
   const [draftNo, setDraftNo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [hintColumn, setHintColumn] = useLocalStorage("hintColumn", "");
 
   const getGuessedPlayerData = async () => {
     if (guess !== "HINT") {
@@ -38,22 +42,16 @@ const Guess = ({
         },
       );
       const data = await response.json();
+
       return data;
     } else {
-      let data = {
-        headshot: null,
-        team_name: playerTeam,
-        conference: playerConference,
-        age: playerAge,
-        position: playerPos,
-        player_number: playerNo,
-        draft_number: playerDraftNo,
-      };
+      const response = await fetch(
+        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${playerCorrectName}`,
+      );
 
-      const hintColumn = hints[Math.floor(Math.random() * hints.length)];
-
+      const data = await response.json();
       for (const column in data) {
-        if (column !== hintColumn["name"]) {
+        if (column !== hintColumn) {
           data[column] = "";
         }
       }
@@ -73,31 +71,39 @@ const Guess = ({
         setPos(data["position"]);
         setNo(data["player_number"]);
         setDraftNo(data["draft_number"]);
-
-        const toRemove = [];
-        // If any guesses are correct, remove them from hintColumns
-        if (playerTeam === data["team_name"]) {
-          toRemove.push("team_name");
-        }
-        if (playerConference === data["conference"]) {
-          toRemove.push("conference");
-        }
-        if (playerAge === data["age"]) {
-          toRemove.push("age");
-        }
-        if (playerPos === data["position"]) {
-          toRemove.push("position");
-        }
-        if (playerNo === parseInt(data["player_number"])) {
-          toRemove.push("player_number");
-        }
-        if (playerDraftNo === data["draft_number"]) {
-          toRemove.push("draft_number");
-        }
-        setHintColumns(hints.filter((item) => !toRemove.includes(item.name)));
       })
       .finally(setIsLoading(false));
   }, []);
+
+  // When new row is made, update possible hints player can get based on green columns if any
+  useEffect(() => {
+    const toRemove = [];
+    // If any guesses are correct, remove them from possible hints we can provide
+    if (playerTeam === teamName) {
+      toRemove.push("team_name");
+    }
+    if (playerConference === conference) {
+      toRemove.push("conference");
+    }
+    if (playerAge === age) {
+      toRemove.push("age");
+    }
+    if (playerPos === pos) {
+      toRemove.push("position");
+    }
+    if (playerNo === parseInt(no)) {
+      toRemove.push("player_number");
+    }
+    if (playerDraftNo === draftNo) {
+      toRemove.push("draft_number");
+    }
+    if (!hints.includes(hintColumn) && !hintClicked) {
+      // Update possible hint they can get
+      setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
+    }
+    // Update all the hints still possible in receiving
+    setHintColumns(hints.filter((item) => !toRemove.includes(item)));
+  }, [teamName, conference, age, pos, no, draftNo]);
 
   const columnStyle = {
     display: "flex",

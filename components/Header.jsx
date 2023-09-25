@@ -4,21 +4,9 @@ import { Box, Tooltip } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
 import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
 import Image from "next/image";
+import Link from "next/link";
 
-const Header = ({
-  setIsShown,
-  setGameFinished,
-  setGuesses,
-  setHowToPlayOpen,
-  setCheatSheetOpen,
-}) => {
-  // Return to starting screen
-  const clickHomeHandler = () => {
-    setIsShown(false);
-    setGameFinished(false);
-    setGuesses([]);
-  };
-
+const Header = ({ setHowToPlayOpen, setCheatSheetOpen }) => {
   return (
     <Box
       style={{
@@ -77,7 +65,8 @@ const Header = ({
             textAlign: "center",
           }}
           className={styles.scaleButton}
-          onClick={clickHomeHandler}
+          href="/"
+          component={Link}
         >
           NBAdle
         </Button>

@@ -1,10 +1,8 @@
 # NBAdle Frontend
 
-## How to run
+## To Do
 
-Change fetch routes to localhost and `npm run dev`
+**Idea**:
 
-## TODO
-
-- [ ] Modal "cheat sheet" -> teams with their players
-- [ ] Different game modes based on team (certain years, seasons, teams only, MVPs)
+- Make two copies of the same game with renamed state variables (u_player..., d_player...)
+- Unlimited as normal, daily checks from local storage the date and hard codes a player

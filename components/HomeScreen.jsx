@@ -1,42 +1,48 @@
 import styles from "../styles/Home.module.css";
 import { Box } from "@mui/material";
 import { Button } from "@mui/joy";
+import Link from "next/link";
 
-const HomeScreen = ({ isShown, gameFinished, onStartGameClickHandler }) => {
+const HomeScreen = () => {
   return (
     <>
-      {!isShown && !gameFinished ? (
-        <Box
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        sx={{
+          minHeight: {
+            xs: "calc(100vh - 120px)",
+            sm: "calc(100vh - 140px - 6vh)",
+            md: "calc(100vh - 140px - 6vh)",
+            lg: "calc(100vh - 150px - 6vh)",
+          },
+        }}
+      >
+        <h1 className={styles.title}>Welcome to NBAdle!</h1>
+        <h2
+          className={styles.smallTitle}
           style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          sx={{
-            minHeight: {
-              xs: "calc(100vh - 120px)",
-              sm: "calc(100vh - 140px - 6vh)",
-              md: "calc(100vh - 140px - 6vh)",
-              lg: "calc(100vh - 150px - 6vh)",
-            },
+            marginBottom: "5vh",
+            textAlign: "center",
           }}
         >
-          <h1 className={styles.title}>Welcome to NBAdle!</h1>
-          <h2
-            className={styles.smallTitle}
-            style={{
-              marginBottom: "5vh",
-              textAlign: "center",
-            }}
-          >
-            The NBA Player Guessing Game
-          </h2>
+          The NBA Player Guessing Game
+        </h2>
 
+        <Box
+          sx={{
+            display: "flex",
+            gap: 5,
+          }}
+        >
           <Button
             sx={{
-              width: { sm: 120, md: 150, lg: 200 },
-              height: { xs: 60, md: 70, lg: 70 },
+              width: { xs: 90, sm: 120, md: 150, lg: 200 },
+              height: { xs: 50, md: 60, lg: 70 },
               color: "white",
               borderRadius: "14px",
             }}
@@ -47,12 +53,32 @@ const HomeScreen = ({ isShown, gameFinished, onStartGameClickHandler }) => {
               verticalAlign: "middle",
             }}
             className={styles.bgButton}
-            onClick={onStartGameClickHandler}
+            href="/daily"
+            component={Link}
           >
-            Start Game
+            Daily
+          </Button>
+          <Button
+            sx={{
+              width: { xs: 90, sm: 120, md: 150, lg: 200 },
+              height: { xs: 50, md: 60, lg: 70 },
+              color: "white",
+              borderRadius: "14px",
+            }}
+            variant="contained"
+            style={{
+              background: "#ffad54",
+              fontSize: "11pt",
+              verticalAlign: "middle",
+            }}
+            className={styles.bgButton}
+            href="/unlimited"
+            component={Link}
+          >
+            Unlimited
           </Button>
         </Box>
-      ) : null}
+      </Box>
     </>
   );
 };
