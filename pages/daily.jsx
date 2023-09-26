@@ -217,6 +217,12 @@ const Daily = () => {
     }
   }, [guesses.length]);
 
+  useEffect(() => {
+    if (hintColumns.length === 0) {
+      setHintClicked(true);
+    }
+  }, [hintColumns]);
+
   return (
     <>
       <AlertBar
