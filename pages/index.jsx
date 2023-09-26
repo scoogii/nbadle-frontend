@@ -39,7 +39,7 @@ export default function Home() {
         />
         <meta
           name="description"
-          content="Play the NBA player guessing game by Christian and Bud. You have 8 chances to correctly guess the randomly chosen NBA player!"
+          content="Play the (unofficial) NBA player guessing game. You have 8 chances to correctly guess the randomly chosen NBA player!"
         />
       </Head>
       <HowToPlayModal
