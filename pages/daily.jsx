@@ -202,18 +202,9 @@ const Daily = () => {
   }, [guesses]);
 
   useEffect(() => {
-    if (guesses.length === 1) {
+    // Disable hint when there are 5 guesses or it is first guess
+    if (guesses.length === 1 || guesses.length === 7) {
       setHintClicked(false);
-    }
-
-    // Disable hint when there are 5 guesses
-    if (guesses.length === 7) {
-      setHintClicked(true);
-    }
-
-    // If all columns HAVE been green, disable hints
-    if (hintColumns.length === 0) {
-      setHintClicked(true);
     }
   }, [guesses.length]);
 
@@ -221,7 +212,7 @@ const Daily = () => {
     if (hintColumns.length === 0) {
       setHintClicked(true);
     }
-  }, [hintColumns]);
+  }, [hintColumns.length]);
 
   return (
     <>
