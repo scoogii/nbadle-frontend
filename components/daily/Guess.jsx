@@ -97,13 +97,17 @@ const Guess = ({
     if (playerDraftNo === draftNo) {
       toRemove.push("draft_number");
     }
+    // Update all the hints still possible in receiving
+    setHintColumns(hints.filter((item) => !toRemove.includes(item)));
+  }, [teamName, conference, age, pos, no, draftNo]);
+
+  // Whenever hintColumns changes, make sure hintColumn is a valid hint to give
+  useEffect(() => {
     if (!hints.includes(hintColumn) && !hintClicked) {
       // Update possible hint they can get
       setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
     }
-    // Update all the hints still possible in receiving
-    setHintColumns(hints.filter((item) => !toRemove.includes(item)));
-  }, [teamName, conference, age, pos, no, draftNo]);
+  }, [hints]);
 
   const columnStyle = {
     display: "flex",
