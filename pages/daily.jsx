@@ -203,8 +203,12 @@ const Daily = () => {
 
   useEffect(() => {
     // Disable hint when there are 5 guesses or it is first guess
-    if (guesses.length === 1 || guesses.length === 7) {
+    if (guesses.length === 1) {
       setHintClicked(false);
+    }
+
+    if (guesses.length === 7) {
+      setHintClicked(true);
     }
   }, [guesses.length]);
 
