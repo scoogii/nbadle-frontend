@@ -173,28 +173,30 @@ const Unlimited = () => {
       block: "end",
     });
 
-    // Disable hint when there are 5 guesses
-    if (guesses.length === 1) {
-      setHintClicked(false);
-    }
-
-    // Disable hint when there are 5 guesses
-    if (guesses.length === 7) {
-      setHintClicked(true);
-    }
-
-    // If all columns HAVE been green, disable hints
-    if (hintColumns.length === 0) {
-      setHintClicked(true);
-    }
-
     // Lose condition - show lose modal and load actual player guess row
-    if (guesses.length === 8 && !gameWon) {
+    if (guesses.length === 8 && !guesses.includes(playerFullName)) {
       setGuesses([...guesses, playerFullName]);
       setGameFinished(true);
       setLoseOpen(true);
     }
   }, [guesses]);
+
+  useEffect(() => {
+    // Disable hint when there are 5 guesses or it is first guess
+    if (guesses.length === 1) {
+      setHintClicked(false);
+    }
+
+    if (guesses.length === 7) {
+      setHintClicked(true);
+    }
+  }, [guesses.length]);
+
+  useEffect(() => {
+    if (hintColumns.length === 0) {
+      setHintClicked(true);
+    }
+  }, [hintColumns.length]);
 
   return (
     <>
