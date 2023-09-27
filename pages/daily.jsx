@@ -194,7 +194,7 @@ const Daily = () => {
     });
 
     // Lose condition - show lose modal and load actual player guess row
-    if (guesses.length === 8 && !gameWon) {
+    if (guesses.length === 8 && !guesses.includes(playerFullName)) {
       setGuesses([...guesses, playerFullName]);
       setGameFinished(true);
       setLoseOpen(true);
