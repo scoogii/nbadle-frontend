@@ -69,13 +69,13 @@ export const checkDraftNo = (draftNo, playerDraftNo) => {
     return;
   }
 
-  const upperDraftNo = playerDraftNo + 1;
-  const lowerDraftNo = playerDraftNo - 1;
+  const upperDraftNo = parseInt(playerDraftNo) + 1;
+  const lowerDraftNo = parseInt(playerDraftNo) - 1;
   if (draftNo === playerDraftNo) {
     return styles.correctGuess;
   } else if (
-    parseInt(draftNo) <= parseInt(upperDraftNo) &&
-    parseInt(draftNo) >= parseInt(lowerDraftNo)
+    parseInt(draftNo) <= upperDraftNo &&
+    parseInt(draftNo) >= lowerDraftNo
   ) {
     return styles.closeGuess;
   } else {
