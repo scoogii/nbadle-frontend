@@ -39,14 +39,14 @@ const Guess = ({
         `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${guess}`,
         {
           method: "GET",
-        },
+        }
       );
       const data = await response.json();
 
       return data;
     } else {
       const response = await fetch(
-        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${playerCorrectName}`,
+        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${playerCorrectName}`
       );
 
       const data = await response.json();
@@ -132,9 +132,15 @@ const Guess = ({
       return;
     }
 
-    if (guessNum < actualNum) {
+    if (actualNum === "Undrafted") {
+      if (guessNum !== "Undrafted") {
+        return <Box sx={{ marginTop: { xs: "0.4vh", lg: "0" } }}>⬆️</Box>;
+      }
+    }
+
+    if (parseInt(guessNum) < parseInt(actualNum)) {
       return <Box sx={{ marginTop: { xs: "0.4vh", lg: "0" } }}>⬆️</Box>;
-    } else if (guessNum > actualNum) {
+    } else if (parseInt(guessNum) > parseInt(actualNum)) {
       return <Box sx={{ marginTop: { xs: "0.4vh", lg: "0" } }}>⬇️</Box>;
     }
   };
@@ -267,14 +273,12 @@ const Guess = ({
         <Box
           style={columnStyle}
           sx={boxStyle}
-          className={checkDraftNo(parseInt(draftNo), parseInt(playerDraftNo))}
+          className={checkDraftNo(draftNo, playerDraftNo)}
         >
           {isLoading ? (
             <div>
               {draftNo}
-              {draftNo !== ""
-                ? higherLower(parseInt(draftNo), parseInt(playerDraftNo))
-                : null}
+              {draftNo !== "" ? higherLower(draftNo, playerDraftNo) : null}
             </div>
           ) : (
             <CircularProgress />
