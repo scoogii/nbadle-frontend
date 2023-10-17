@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css';
+import styles from "../styles/Home.module.css";
 
 export const checkTeam = (teamName, playerTeam) => {
   if (teamName === null) {
@@ -25,11 +25,9 @@ export const checkAge = (age, playerAge) => {
   const lowerAge = playerAge - 2;
   if (age === playerAge) {
     return styles.correctGuess;
-  }
-  else if (age <= upperAge && age >= lowerAge) {
+  } else if (age <= upperAge && age >= lowerAge) {
     return styles.closeGuess;
-  }
-  else {
+  } else {
     return styles.fade;
   }
 };
@@ -43,11 +41,9 @@ export const checkPts = (pts, playerPts) => {
   const lowerPts = playerPts - 2;
   if (pts === playerPts) {
     return styles.correctGuess;
-  }
-  else if (pts <= upperPts && pts >= lowerPts) {
+  } else if (pts <= upperPts && pts >= lowerPts) {
     return styles.closeGuess;
-  }
-  else {
+  } else {
     return styles.fade;
   }
 };
@@ -61,11 +57,9 @@ export const checkNo = (no, playerNo) => {
   const lowerNo = playerNo - 1;
   if (no === playerNo) {
     return styles.correctGuess;
-  }
-  else if (no <= upperNo && no >= lowerNo) {
+  } else if (no <= upperNo && no >= lowerNo) {
     return styles.closeGuess;
-  }
-  else {
+  } else {
     return styles.fade;
   }
 };
@@ -79,11 +73,12 @@ export const checkDraftNo = (draftNo, playerDraftNo) => {
   const lowerDraftNo = playerDraftNo - 1;
   if (draftNo === playerDraftNo) {
     return styles.correctGuess;
-  }
-  else if (draftNo <= upperDraftNo && draftNo >= lowerDraftNo) {
+  } else if (
+    parseInt(draftNo) <= parseInt(upperDraftNo) &&
+    parseInt(draftNo) >= parseInt(lowerDraftNo)
+  ) {
     return styles.closeGuess;
-  }
-  else {
+  } else {
     return styles.fade;
   }
 };
