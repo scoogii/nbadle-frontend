@@ -56,19 +56,6 @@ const HomeScreen = () => {
             href="/daily"
             component={Link}
           >
-            <Chip
-              className={styles.newFeature}
-              sx={{
-                background: "#de1440",
-                color: "white",
-                boxShadow: "0 5px #a10e2e",
-                position: "absolute",
-                top: { xs: "-20px", md: "-15px" },
-                right: { xs: "-18px", md: "-5px" },
-              }}
-            >
-              New!
-            </Chip>
             Daily
           </Button>
           <Button

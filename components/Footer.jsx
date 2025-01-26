@@ -29,22 +29,20 @@ const Footer = () => {
         By&nbsp;
         <Link
           underline="none"
-          href="https://www.buymeacoffee.com/budtruong2a"
+          href="https://www.linkedin.com/in/christianngu/"
           target="_blank"
           style={{ color: "white" }}
         >
           Bud Truong
-          <CoffeeIcon sx={{ width: 20, height: 20 }} />
         </Link>
         &nbsp;and&nbsp;
         <Link
           underline="none"
-          href="https://www.buymeacoffee.com/christiamz"
+          href="https://www.linkedin.com/in/bud-truong-277139292/"
           target="_blank"
           style={{ color: "white" }}
         >
           Christian Nguyen
-          <CoffeeIcon sx={{ width: 20, height: 20 }} />
         </Link>
       </span>
     </Box>
