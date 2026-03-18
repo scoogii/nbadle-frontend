@@ -9,6 +9,11 @@ const GuessForm = ({ handleGuessSubmit, playerNames, guess, setGuess }) => {
           variant="outlined"
           options={playerNames}
           value={guess}
+          filterOptions={(options, { inputValue }) => {
+            const normalize = (s) => s.toLowerCase().replace(/['\-\s.]/g, "");
+            const input = normalize(inputValue);
+            return options.filter((opt) => normalize(opt).includes(input));
+          }}
           sx={{
             width: { xs: 200, sm: 250, md: 300 },
             height: { xs: 40, sm: 45, md: 50, lg: 55, xl: 65 },
