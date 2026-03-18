@@ -57,7 +57,7 @@ const Unlimited = () => {
   // Retreive player data function
   const getPlayerData = async () => {
     const response = await fetch(
-      "https://nbadle-backend.onrender.com/api/getplayer",
+      `${process.env.NEXT_PUBLIC_API_URL}/getplayer`,
       {
         method: "GET",
       },
@@ -146,7 +146,7 @@ const Unlimited = () => {
   useEffect(() => {
     const fetchNames = async () => {
       const response = await fetch(
-        "https://nbadle-backend.onrender.com/api/getnames",
+        `${process.env.NEXT_PUBLIC_API_URL}/getnames`,
         {
           method: "GET",
         },

@@ -144,7 +144,7 @@ const Daily = () => {
   useEffect(() => {
     const fetchNames = async () => {
       const response = await fetch(
-        "https://nbadle-backend.onrender.com/api/getnames",
+        `${process.env.NEXT_PUBLIC_API_URL}/getnames`,
         {
           method: "GET",
         },
@@ -165,7 +165,7 @@ const Daily = () => {
     // Retreive player data function
     const getPlayerData = async () => {
       const response = await fetch(
-        "https://nbadle-backend.onrender.com/api/getdailyplayer",
+        `${process.env.NEXT_PUBLIC_API_URL}/getdailyplayer`,
         {
           method: "GET",
         },

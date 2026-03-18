@@ -39,7 +39,7 @@ const Guess = ({
   const getGuessedPlayerData = async () => {
     if (guess !== "HINT") {
       const response = await fetch(
-        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${guess}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/getguessedplayer?guess=${guess}`,
         {
           method: "GET",
         }
@@ -49,7 +49,7 @@ const Guess = ({
       return data;
     } else {
       const response = await fetch(
-        `https://nbadle-backend.onrender.com/api/getguessedplayer?guess=${playerCorrectName}`
+        `${process.env.NEXT_PUBLIC_API_URL}/getguessedplayer?guess=${playerCorrectName}`
       );
 
       const data = await response.json();
