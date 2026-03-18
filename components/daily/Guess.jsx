@@ -7,6 +7,7 @@ import {
   checkAge,
   checkNo,
   checkDraftNo,
+  checkDraftYear,
 } from "../../utils/checkStats.js";
 import { useLocalStorage } from "usehooks-ts";
 
@@ -22,6 +23,7 @@ const Guess = ({
   playerPos,
   playerNo,
   playerDraftNo,
+  playerDraftYear,
 }) => {
   const [headshot, setHeadshot] = useState(null);
   const [teamName, setTeamName] = useState("");
@@ -30,6 +32,7 @@ const Guess = ({
   const [pos, setPos] = useState("");
   const [no, setNo] = useState("");
   const [draftNo, setDraftNo] = useState("");
+  const [draftYear, setDraftYear] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hintColumn, setHintColumn] = useLocalStorage("hintColumn", "");
 
@@ -71,6 +74,7 @@ const Guess = ({
         setPos(data["position"]);
         setNo(data["player_number"]);
         setDraftNo(data["draft_number"]);
+        setDraftYear(data["draft_year"]);
       })
       .finally(setIsLoading(false));
   }, []);
@@ -97,9 +101,12 @@ const Guess = ({
     if (playerDraftNo === draftNo) {
       toRemove.push("draft_number");
     }
+    if (playerDraftYear === draftYear) {
+      toRemove.push("draft_year");
+    }
     // Update all the hints still possible in receiving
     setHintColumns(hints.filter((item) => !toRemove.includes(item)));
-  }, [teamName, conference, age, pos, no, draftNo]);
+  }, [teamName, conference, age, pos, no, draftNo, draftYear]);
 
   // Whenever hintColumns changes, make sure hintColumn is a valid hint to give
   useEffect(() => {
@@ -279,6 +286,21 @@ const Guess = ({
             <div>
               {draftNo}
               {draftNo !== "" ? higherLower(draftNo, playerDraftNo) : null}
+            </div>
+          ) : (
+            <CircularProgress />
+          )}
+        </Box>
+
+        <Box
+          style={columnStyle}
+          sx={boxStyle}
+          className={checkDraftYear(draftYear, playerDraftYear)}
+        >
+          {isLoading ? (
+            <div>
+              {draftYear}
+              {draftYear !== "" ? higherLower(draftYear, playerDraftYear) : null}
             </div>
           ) : (
             <CircularProgress />

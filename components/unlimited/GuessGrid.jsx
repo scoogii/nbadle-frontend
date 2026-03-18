@@ -14,6 +14,7 @@ const GuessGrid = ({
   playerPos,
   playerNo,
   playerDraftNo,
+  playerDraftYear,
 }) => {
   return (
     <Paper
@@ -42,6 +43,7 @@ const GuessGrid = ({
             playerPos={playerPos}
             playerNo={playerNo}
             playerDraftNo={playerDraftNo}
+            playerDraftYear={playerDraftYear}
             key={index}
           />
         ))}

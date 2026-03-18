@@ -23,6 +23,7 @@ const ColumnHeadings = () => {
       <ColumnHeading heading="Position" />
       <ColumnHeading heading="#" />
       <ColumnHeading heading="Draft#" />
+      <ColumnHeading heading="Draft Yr" />
     </Box>
   );
 };

@@ -82,3 +82,22 @@ export const checkDraftNo = (draftNo, playerDraftNo) => {
     return styles.fade;
   }
 };
+
+export const checkDraftYear = (draftYear, playerDraftYear) => {
+  if (draftYear === null) {
+    return;
+  }
+
+  const upperDraftYear = parseInt(playerDraftYear) + 1;
+  const lowerDraftYear = parseInt(playerDraftYear) - 1;
+  if (draftYear === playerDraftYear) {
+    return styles.correctGuess;
+  } else if (
+    parseInt(draftYear) <= upperDraftYear &&
+    parseInt(draftYear) >= lowerDraftYear
+  ) {
+    return styles.closeGuess;
+  } else {
+    return styles.fade;
+  }
+};

@@ -24,6 +24,7 @@ const GameScreen = ({
   playerPos,
   playerNo,
   playerDraftNo,
+  playerDraftYear,
   onStartGameClickHandler,
 }) => {
   return (
@@ -73,6 +74,7 @@ const GameScreen = ({
           playerPos={playerPos}
           playerNo={playerNo}
           playerDraftNo={playerDraftNo}
+          playerDraftYear={playerDraftYear}
         />
 
         {/* When game is finished and user has not pressed play again, show play again button */}

@@ -19,6 +19,7 @@ const Unlimited = () => {
   const [playerPos, setPlayerPos] = useState("");
   const [playerNo, setPlayerNo] = useState(0);
   const [playerDraftNo, setPlayerDraftNo] = useState(null);
+  const [playerDraftYear, setPlayerDraftYear] = useState(null);
 
   // Columns that are valid for hints
   const [hintColumns, setHintColumns] = useState([
@@ -28,6 +29,7 @@ const Unlimited = () => {
     "position",
     "player_number",
     "draft_number",
+    "draft_year",
   ]);
 
   const [playerNames, setPlayerNames] = useState([]); // Set player names
@@ -74,6 +76,7 @@ const Unlimited = () => {
     setPlayerPos(data["position"]);
     setPlayerNo(data["player_number"]);
     setPlayerDraftNo(data["draft_number"]);
+    setPlayerDraftYear(data["draft_year"]);
   };
 
   // Game cleanup function
@@ -90,6 +93,7 @@ const Unlimited = () => {
       "position",
       "player_number",
       "draft_number",
+      "draft_year",
     ]);
   };
 
@@ -241,6 +245,7 @@ const Unlimited = () => {
             playerPos={playerPos}
             playerNo={playerNo}
             playerDraftNo={playerDraftNo}
+            playerDraftYear={playerDraftYear}
             onStartGameClickHandler={onStartGameClickHandler}
           />
 

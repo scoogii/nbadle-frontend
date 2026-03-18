@@ -43,6 +43,10 @@ const Daily = () => {
     "playerDraftNo",
     null,
   );
+  const [playerDraftYear, setPlayerDraftYear] = useLocalStorage(
+    "playerDraftYear",
+    null,
+  );
 
   // Columns that are valid for hints
   const [hintColumns, setHintColumns] = useLocalStorage("hintColumns", [
@@ -52,6 +56,7 @@ const Daily = () => {
     "position",
     "player_number",
     "draft_number",
+    "draft_year",
   ]);
 
   const [playerNames, setPlayerNames] = useState([]); // Set player names
@@ -92,6 +97,7 @@ const Daily = () => {
       "position",
       "player_number",
       "draft_number",
+      "draft_year",
     ]);
   };
 
@@ -181,6 +187,7 @@ const Daily = () => {
       setPlayerPos(data["position"]);
       setPlayerNo(data["player_number"]);
       setPlayerDraftNo(data["draft_number"]);
+      setPlayerDraftYear(data["draft_year"]);
     };
     getPlayerData();
   }, []);
@@ -286,6 +293,7 @@ const Daily = () => {
               playerPos={playerPos}
               playerNo={playerNo}
               playerDraftNo={playerDraftNo}
+              playerDraftYear={playerDraftYear}
             />
             {/* Win Lose Modals */}
             <WinLoseModal
