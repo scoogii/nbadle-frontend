@@ -12,6 +12,7 @@ import PlayActions from "../components/PlayActions";
 import ColumnHeadings from "../components/ColumnHeadings";
 import GuessGrid from "../components/game/GuessGrid";
 import Countdown from "../components/daily/Countdown";
+import ShareResultsButton from "../components/ShareResultsButton";
 import useGame from "../hooks/useGame";
 
 const Daily = () => {
@@ -56,17 +57,11 @@ const Daily = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
+              flex: 1,
+              minHeight: "100vh",
             }}
             sx={{
-              minHeight: {
-                xs: "calc(100vh - 120px)",
-                sm: "calc(100vh - 140px - 6vh)",
-                md: "calc(100vh - 70px - 4vh)",
-                lg: "calc(100vh - 70px - 2vh)",
-              },
-              marginTop: { lg: "-2vh" },
-              marginBottom: { lg: "-2vh" },
+              justifyContent: { xs: "center", sm: "flex-start" },
             }}
           >
             {game.gameFinished ? <Countdown /> : null}{" "}
@@ -90,6 +85,8 @@ const Daily = () => {
               hintColumns={game.hintColumns}
               hintClicked={game.hintClicked}
               setHintColumns={game.setHintColumns}
+              hintColumn={game.hintColumn}
+              setHintColumn={game.setHintColumn}
               playerTeamName={game.playerTeamName}
               playerConference={game.playerConference}
               playerAge={game.playerAge}
@@ -117,17 +114,33 @@ const Daily = () => {
                 draft_number: game.playerDraftNo,
                 draft_year: game.playerDraftYear,
               }}
-              hintColumn={
-                typeof window !== "undefined"
-                  ? (() => { try { return JSON.parse(localStorage.getItem("hintColumn") || '""'); } catch { return ""; } })()
-                  : ""
-              }
+              hintColumn={game.hintColumn}
               isDaily={true}
               onCopied={() => {
                 game.setCopiedOpen(false);
                 setTimeout(() => game.setCopiedOpen(true), 100);
               }}
             />
+            {game.gameFinished ? (
+              <ShareResultsButton
+                guesses={game.guesses}
+                correctPlayer={{
+                  team_name: game.playerTeamName,
+                  conference: game.playerConference,
+                  age: game.playerAge,
+                  position: game.playerPos,
+                  player_number: game.playerNo,
+                  draft_number: game.playerDraftNo,
+                  draft_year: game.playerDraftYear,
+                }}
+                gameWon={game.gameWon}
+                hintColumn={game.hintColumn}
+                onCopied={() => {
+                  game.setCopiedOpen(false);
+                  setTimeout(() => game.setCopiedOpen(true), 100);
+                }}
+              />
+            ) : null}
           </Box>
           <Footer />
         </div>

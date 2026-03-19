@@ -3,7 +3,7 @@
   display: flex;
   padding: 0;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-image: url("/balls_2.webp");
   background-size: cover;

@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     // Parent container
-    <div className={styles.container}>
+    <div className={styles.container} style={{ justifyContent: "center" }}>
       <Head>
         <title>NBAdle</title>
         <link rel="icon" href="/favicon.ico" />

@@ -10,6 +10,8 @@ const GuessGrid = ({
   hintColumns,
   hintClicked,
   setHintColumns,
+  hintColumn,
+  setHintColumn,
   playerTeamName,
   playerConference,
   playerAge,
@@ -39,6 +41,8 @@ const GuessGrid = ({
             hints={hintColumns}
             hintClicked={hintClicked}
             setHintColumns={setHintColumns}
+            hintColumn={hintColumn}
+            setHintColumn={setHintColumn}
             playerCorrectName={playerCorrectName}
             guess={guess}
             playerTeam={playerTeamName}

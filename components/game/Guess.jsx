@@ -1,5 +1,5 @@
 import { Tooltip } from "@mui/joy";
-import { Box, Paper, CircularProgress } from "@mui/material";
+import { Box, Paper, CircularProgress, useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
 import styles from "../../styles/Home.module.css";
 import {
@@ -14,6 +14,8 @@ const Guess = ({
   hints,
   hintClicked,
   setHintColumns,
+  hintColumn,
+  setHintColumn,
   playerCorrectName,
   guess,
   playerTeam,
@@ -24,6 +26,9 @@ const Guess = ({
   playerDraftNo,
   playerDraftYear,
 }) => {
+  const isSmall = useMediaQuery("(max-width:900px)");
+  const formatDraft = (val) => (val === "Undrafted" && isSmall ? "Undr." : val);
+
   const [headshot, setHeadshot] = useState(null);
   const [teamName, setTeamName] = useState("");
   const [conference, setConference] = useState("");
@@ -33,24 +38,6 @@ const Guess = ({
   const [draftNo, setDraftNo] = useState("");
   const [draftYear, setDraftYear] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  // Daily persists hintColumn to localStorage, unlimited keeps in memory
-  const [hintColumn, setHintColumn] = useState(() => {
-    if (isDaily && typeof window !== "undefined") {
-      const stored = localStorage.getItem("hintColumn");
-      if (stored !== null) {
-        try { return JSON.parse(stored); } catch { return ""; }
-      }
-      return "";
-    }
-    return hints[Math.floor(Math.random() * hints.length)];
-  });
-
-  useEffect(() => {
-    if (isDaily) {
-      localStorage.setItem("hintColumn", JSON.stringify(hintColumn));
-    }
-  }, [hintColumn, isDaily]);
 
   const getGuessedPlayerData = async () => {
     if (guess !== "HINT") {
@@ -99,7 +86,7 @@ const Guess = ({
     if (playerDraftNo === draftNo) toRemove.push("draft_number");
     if (playerDraftYear === draftYear) toRemove.push("draft_year");
 
-    if (!hints.includes(hintColumn)) {
+    if (hints.length > 0 && !hints.includes(hintColumn)) {
       setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
     }
 
@@ -115,13 +102,13 @@ const Guess = ({
     borderRight: "1px solid",
     borderLeft: "1px solid",
     borderColor: "#cdcfd1",
+    overflow: "hidden",
+    minWidth: 0,
   };
 
   const boxStyle = {
-    width: { xs: "14vw", md: "11vw", lg: "10vw", xl: "9vw" },
     height: "100%",
     fontSize: { xs: "2.6vw", md: "1.8vw", lg: "1.2vw", xl: "1.1vw" },
-    position: { xs: "relative" },
   };
 
   const higherLower = (guessNum, actualNum) => {
@@ -144,10 +131,9 @@ const Guess = ({
         sx={{
           width: "100%",
           height: { xs: "13vh", md: "12vh", lg: "10vh" },
-          display: "flex",
-          flexDirection: "row",
+          display: "grid",
+          gridTemplateColumns: "repeat(8, 1fr)",
           alignItems: "center",
-          justifyContent: "center",
         }}
         className={styles.guessPaper}
       >
@@ -264,7 +250,7 @@ const Guess = ({
         >
           {isLoading ? (
             <div>
-              {draftNo}
+              {formatDraft(draftNo)}
               {draftNo !== "" ? higherLower(draftNo, playerDraftNo) : null}
             </div>
           ) : (
@@ -279,7 +265,7 @@ const Guess = ({
         >
           {isLoading ? (
             <div>
-              {draftYear}
+              {formatDraft(draftYear)}
               {draftYear !== ""
                 ? higherLower(draftYear, playerDraftYear)
                 : null}

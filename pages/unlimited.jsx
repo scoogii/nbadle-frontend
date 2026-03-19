@@ -35,23 +35,16 @@ const Unlimited = () => {
           setHowToPlayOpen={game.setHowToPlayOpen}
           setCheatSheetOpen={game.setCheatSheetOpen}
         />
-        <Box>
-          <Box
+        <Box
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
+              flex: 1,
+              minHeight: "100vh",
             }}
             sx={{
-              minHeight: {
-                xs: "calc(100vh - 120px)",
-                sm: "calc(100vh - 140px - 6vh)",
-                md: "calc(100vh - 70px - 4vh)",
-                lg: "calc(100vh - 70px - 2vh)",
-              },
-              marginTop: { lg: "-2vh" },
-              marginBottom: { lg: "-2vh" },
+              justifyContent: { xs: "center", sm: "flex-start" },
             }}
           >
             <PlayActions
@@ -74,6 +67,8 @@ const Unlimited = () => {
               hintColumns={game.hintColumns}
               hintClicked={game.hintClicked}
               setHintColumns={game.setHintColumns}
+              hintColumn={game.hintColumn}
+              setHintColumn={game.setHintColumn}
               playerTeamName={game.playerTeamName}
               playerConference={game.playerConference}
               playerAge={game.playerAge}
@@ -87,7 +82,6 @@ const Unlimited = () => {
               guesses={game.guesses}
               onStartGameClickHandler={game.onStartGameClickHandler}
             />
-          </Box>
           <WinLoseModal
             gameFinished={game.gameFinished}
             gameWon={game.gameWon}

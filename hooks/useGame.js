@@ -40,6 +40,7 @@ export default function useGame(mode) {
   const [playerDraftNo, setPlayerDraftNo] = usePersistedState("playerDraftNo", null, isDaily);
   const [playerDraftYear, setPlayerDraftYear] = usePersistedState("playerDraftYear", null, isDaily);
   const [hintColumns, setHintColumns] = usePersistedState("hintColumns", [...DEFAULT_HINT_COLUMNS], isDaily);
+  const [hintColumn, setHintColumn] = usePersistedState("hintColumn", "", isDaily);
   const [gameFinished, setGameFinished] = usePersistedState("gameFinished", false, isDaily);
   const [guesses, setGuesses] = usePersistedState("guesses", [], isDaily);
   const [hintClicked, setHintClicked] = usePersistedState("hintClicked", true, isDaily);
@@ -81,6 +82,7 @@ export default function useGame(mode) {
     setGameFinished(false);
     setGameWon(false);
     setHintColumns([...DEFAULT_HINT_COLUMNS]);
+    setHintColumn("");
   };
 
   const getPlayerData = async () => {
@@ -124,6 +126,9 @@ export default function useGame(mode) {
   const handleHintPress = () => {
     if (!hintClicked) {
       setHintClicked(true);
+    }
+    if (!hintColumn && hintColumns.length > 0) {
+      setHintColumn(hintColumns[Math.floor(Math.random() * hintColumns.length)]);
     }
     setGuesses([...guesses, "HINT"]);
   };
@@ -206,7 +211,7 @@ export default function useGame(mode) {
     playerNames, gameFinished, gameWon, guess, guesses, guessRef,
     setGuess, setGuesses,
     // Hints
-    hintColumns, setHintColumns, hintClicked,
+    hintColumns, setHintColumns, hintColumn, setHintColumn, hintClicked,
     // Modals
     winOpen, setWinOpen, loseOpen, setLoseOpen,
     howToPlayOpen, setHowToPlayOpen, cheatSheetOpen, setCheatSheetOpen,

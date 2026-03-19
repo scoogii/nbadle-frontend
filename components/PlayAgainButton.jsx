@@ -20,7 +20,7 @@ const PlayAgainButton = ({
           variant="contained"
           style={{
             background: "#62cc87",
-            fontSize: "11pt",
+            fontSize: "13pt",
             verticalAlign: "middle",
           }}
           onClick={onStartGameClickHandler}
