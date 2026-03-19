@@ -1,6 +1,8 @@
 import { Box, Button, Modal, ModalClose, Sheet, Typography } from "@mui/joy";
+import { useState } from "react";
 import Confetti from "./Confetti";
 import styles from "../styles/Home.module.css";
+import { generateShareText, shareResults } from "../utils/shareResults";
 
 const WinLoseModal = ({
   gameFinished,
@@ -11,7 +13,38 @@ const WinLoseModal = ({
   setLoseOpen,
   playerHeadshot,
   playerFullName,
+  guesses,
+  correctPlayer,
+  hintColumn,
+  isDaily,
+  onCopied,
 }) => {
+  const [sharing, setSharing] = useState(false);
+
+  const handleShare = async () => {
+    if (sharing) return;
+    setSharing(true);
+    try {
+      const text = await generateShareText(guesses, correctPlayer, gameWon, hintColumn);
+      const result = await shareResults(text);
+      if (result === "copied" && onCopied) {
+        onCopied();
+      }
+    } catch {
+      // silently fail
+    } finally {
+      setSharing(false);
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (isDaily) {
+      handleShare();
+    } else {
+      gameWon ? setWinOpen(false) : setLoseOpen(false);
+    }
+  };
+
   return (
     <>
       {gameFinished ? (
@@ -88,9 +121,9 @@ const WinLoseModal = ({
                 justifyContent: "center",
                 alignItems: "flexEnd",
               }}
-              onClick={() => (gameWon ? setWinOpen(false) : setLoseOpen(false))}
+              onClick={handleButtonClick}
             >
-              Show Results
+              {isDaily ? "Share Results" : "Show Results"}
             </Button>
           </Sheet>
         </Modal>

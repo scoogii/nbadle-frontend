@@ -84,6 +84,9 @@ const Daily = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
+  // Copied to clipboard snackbar
+  const [copiedOpen, setCopiedOpen] = useState(false);
+
   const cleanup = () => {
     setGuess("");
     setGuesses([]);
@@ -234,6 +237,14 @@ const Daily = () => {
         }}
         message={alertMessage}
       />
+      <AlertBar
+        isOpen={copiedOpen}
+        handleClose={() => setCopiedOpen(false)}
+        message="Copied to clipboard! 📋"
+        severity="success"
+        background="#4caf50"
+        borderColor="#2e7d32"
+      />
       <HowToPlayModal
         howToPlayOpen={howToPlayOpen}
         setHowToPlayOpen={setHowToPlayOpen}
@@ -305,6 +316,26 @@ const Daily = () => {
               setLoseOpen={setLoseOpen}
               playerHeadshot={playerHeadshot}
               playerFullName={playerFullName}
+              guesses={guesses}
+              correctPlayer={{
+                team_name: playerTeamName,
+                conference: playerConference,
+                age: playerAge,
+                position: playerPos,
+                player_number: playerNo,
+                draft_number: playerDraftNo,
+                draft_year: playerDraftYear,
+              }}
+              hintColumn={
+                typeof window !== "undefined"
+                  ? JSON.parse(localStorage.getItem("hintColumn") || '""')
+                  : ""
+              }
+              isDaily={true}
+              onCopied={() => {
+                setCopiedOpen(false);
+                setTimeout(() => setCopiedOpen(true), 100);
+              }}
             />
           </Box>
           <Footer />

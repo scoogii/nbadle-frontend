@@ -1,18 +1,18 @@
 import { Alert, Snackbar } from "@mui/material";
 
-const AlertBar = ({ isOpen, handleClose, message }) => {
+const AlertBar = ({ isOpen, handleClose, message, severity = "error", background, borderColor }) => {
   return (
     <Snackbar open={isOpen} autoHideDuration={3000} onClose={handleClose}>
       <Alert
         variant="filled"
-        severity="error"
+        severity={severity}
         sx={{
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
           fontSize: { lg: "12pt" },
-          background: "#e80e36",
-          border: "1px solid #6e0014",
+          background: background || "#e80e36",
+          border: `1px solid ${borderColor || "#6e0014"}`,
         }}
       >
         {message}
