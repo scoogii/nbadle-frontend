@@ -78,7 +78,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
               }}
             >
               <h3 style={{ textAlign: "center" }}>
-                Filthy casual? We've got you covered
+                For the filthy casuals
               </h3>
               <h3>West</h3>
               <Box sx={teamsContainerStyle}>
@@ -86,6 +86,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/mavericks.png"
+                    alt="Dallas Mavericks logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -95,6 +96,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/nuggets.png"
+                    alt="Denver Nuggets logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -104,6 +106,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/warriors.png"
+                    alt="Golden State Warriors logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -113,6 +116,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/rockets.png"
+                    alt="Houston Rockets logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -122,6 +126,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/clippers.png"
+                    alt="Los Angeles Clippers logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -131,6 +136,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/lakers.png"
+                    alt="Los Angeles Lakers logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -140,6 +146,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/grizzlies.png"
+                    alt="Memphis Grizzlies logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -149,6 +156,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/timberwolves.png"
+                    alt="Minnesota Timberwolves logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -158,6 +166,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/pelicans.png"
+                    alt="New Orleans Pelicans logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -167,6 +176,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/thunder.png"
+                    alt="Oklahoma City Thunder logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -176,6 +186,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/suns.png"
+                    alt="Phoenix Suns logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -185,6 +196,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/trail blazers.png"
+                    alt="Portland Trail Blazers logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -194,6 +206,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/kings.png"
+                    alt="Sacramento Kings logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -203,6 +216,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/spurs.png"
+                    alt="San Antonio Spurs logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -212,6 +226,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/jazz.png"
+                    alt="Utah Jazz logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -224,6 +239,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/hawks.png"
+                    alt="Atlanta Hawks logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -233,6 +249,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/celtics.png"
+                    alt="Boston Celtics logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -242,6 +259,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/nets.png"
+                    alt="Brooklyn Nets logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -251,6 +269,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/hornets.png"
+                    alt="Charlotte Hornets logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -260,6 +279,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/bulls.png"
+                    alt="Chicago Bulls logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -269,6 +289,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/cavaliers.png"
+                    alt="Cleveland Cavaliers logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -278,6 +299,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/pistons.png"
+                    alt="Detroit Pistons logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -287,6 +309,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/pacers.png"
+                    alt="Indiana Pacers logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -296,6 +319,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/heat.png"
+                    alt="Miami Heat logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -305,6 +329,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/bucks.png"
+                    alt="Milwaukee Bucks logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -314,6 +339,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/knicks.png"
+                    alt="New York Knicks logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -323,6 +349,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/magic.png"
+                    alt="Orlando Magic logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -332,6 +359,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/76ers.png"
+                    alt="Philadelphia 76ers logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -341,6 +369,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/raptors.png"
+                    alt="Toronto Raptors logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}
@@ -350,6 +379,7 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                   <Image
                     component="img"
                     src="/wizards.png"
+                    alt="Washington Wizards logo"
                     width={100}
                     height={100}
                     style={teamImageStyle}

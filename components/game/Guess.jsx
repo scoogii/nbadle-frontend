@@ -9,9 +9,8 @@ import {
   checkDraftNo,
   checkDraftYear,
 } from "../../utils/checkStats.js";
-import { useLocalStorage } from "usehooks-ts";
-
 const Guess = ({
+  isDaily,
   hints,
   hintClicked,
   setHintColumns,
@@ -34,31 +33,42 @@ const Guess = ({
   const [draftNo, setDraftNo] = useState("");
   const [draftYear, setDraftYear] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [hintColumn, setHintColumn] = useLocalStorage("hintColumn", "");
+
+  // Daily persists hintColumn to localStorage, unlimited keeps in memory
+  const [hintColumn, setHintColumn] = useState(() => {
+    if (isDaily && typeof window !== "undefined") {
+      const stored = localStorage.getItem("hintColumn");
+      if (stored !== null) {
+        try { return JSON.parse(stored); } catch { return ""; }
+      }
+      return "";
+    }
+    return hints[Math.floor(Math.random() * hints.length)];
+  });
+
+  useEffect(() => {
+    if (isDaily) {
+      localStorage.setItem("hintColumn", JSON.stringify(hintColumn));
+    }
+  }, [hintColumn, isDaily]);
 
   const getGuessedPlayerData = async () => {
     if (guess !== "HINT") {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/getguessedplayer?guess=${guess}`,
-        {
-          method: "GET",
-        }
+        { method: "GET" }
       );
-      const data = await response.json();
-
-      return data;
+      return await response.json();
     } else {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/getguessedplayer?guess=${playerCorrectName}`
       );
-
       const data = await response.json();
       for (const column in data) {
-        if (column !== hintColumn) {
+        if (column === "headshot" || column === "full_name" || column !== hintColumn) {
           data[column] = "";
         }
       }
-
       return data;
     }
   };
@@ -76,45 +86,25 @@ const Guess = ({
         setDraftNo(data["draft_number"]);
         setDraftYear(data["draft_year"]);
       })
-      .finally(setIsLoading(false));
+      .catch(() => setIsLoading(false));
   }, []);
 
-  // When new row is made, update possible hints player can get based on green columns if any
   useEffect(() => {
     const toRemove = [];
-    // If any guesses are correct, remove them from possible hints we can provide
-    if (playerTeam === teamName) {
-      toRemove.push("team_name");
-    }
-    if (playerConference === conference) {
-      toRemove.push("conference");
-    }
-    if (playerAge === age) {
-      toRemove.push("age");
-    }
-    if (playerPos === pos) {
-      toRemove.push("position");
-    }
-    if (playerNo === parseInt(no)) {
-      toRemove.push("player_number");
-    }
-    if (playerDraftNo === draftNo) {
-      toRemove.push("draft_number");
-    }
-    if (playerDraftYear === draftYear) {
-      toRemove.push("draft_year");
-    }
-    // Update all the hints still possible in receiving
-    setHintColumns(hints.filter((item) => !toRemove.includes(item)));
-  }, [teamName, conference, age, pos, no, draftNo, draftYear]);
+    if (playerTeam === teamName) toRemove.push("team_name");
+    if (playerConference === conference) toRemove.push("conference");
+    if (playerAge === age) toRemove.push("age");
+    if (playerPos === pos) toRemove.push("position");
+    if (playerNo === parseInt(no)) toRemove.push("player_number");
+    if (playerDraftNo === draftNo) toRemove.push("draft_number");
+    if (playerDraftYear === draftYear) toRemove.push("draft_year");
 
-  // Whenever hintColumns changes, make sure hintColumn is a valid hint to give
-  useEffect(() => {
-    if (!hints.includes(hintColumn) && !hintClicked) {
-      // Update possible hint they can get
+    if (!hints.includes(hintColumn)) {
       setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
     }
-  }, [hints]);
+
+    setHintColumns(hints.filter((item) => !toRemove.includes(item)));
+  }, [teamName, conference, age, pos, no, draftNo, draftYear]);
 
   const columnStyle = {
     display: "flex",
@@ -135,16 +125,12 @@ const Guess = ({
   };
 
   const higherLower = (guessNum, actualNum) => {
-    if (guessNum === null) {
-      return;
-    }
-
+    if (guessNum === null) return;
     if (actualNum === "Undrafted") {
       if (guessNum !== "Undrafted") {
         return <Box sx={{ marginTop: { xs: "0.4vh", lg: "0" } }}>⬆️</Box>;
       }
     }
-
     if (parseInt(guessNum) < parseInt(actualNum)) {
       return <Box sx={{ marginTop: { xs: "0.4vh", lg: "0" } }}>⬆️</Box>;
     } else if (parseInt(guessNum) > parseInt(actualNum)) {
@@ -167,15 +153,15 @@ const Guess = ({
       >
         <Box style={columnStyle} sx={boxStyle} className={styles.fade}>
           {isLoading ? (
-            <Tooltip title={guess}>
-              <img
-                src={headshot !== "" ? headshot : null}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                }}
-              />
-            </Tooltip>
+            headshot ? (
+              <Tooltip title={guess}>
+                <img
+                  src={headshot}
+                  alt={`${guess} headshot`}
+                  style={{ maxWidth: "100%", maxHeight: "100%" }}
+                />
+              </Tooltip>
+            ) : null
           ) : (
             <CircularProgress />
           )}
@@ -202,10 +188,7 @@ const Guess = ({
                     teamName !== "" ? `/${teamName.toLowerCase()}.png` : null
                   }
                   alt={teamName}
-                  style={{
-                    maxWidth: "75%",
-                    maxHeight: "75%",
-                  }}
+                  style={{ maxWidth: "75%", maxHeight: "75%" }}
                 />
               </Tooltip>
             </Box>
@@ -229,10 +212,7 @@ const Guess = ({
                   : null
               }
               alt={conference}
-              style={{
-                maxWidth: "75%",
-                maxHeight: "75%",
-              }}
+              style={{ maxWidth: "75%", maxHeight: "75%" }}
             />
           ) : (
             <CircularProgress />
@@ -300,7 +280,9 @@ const Guess = ({
           {isLoading ? (
             <div>
               {draftYear}
-              {draftYear !== "" ? higherLower(draftYear, playerDraftYear) : null}
+              {draftYear !== ""
+                ? higherLower(draftYear, playerDraftYear)
+                : null}
             </div>
           ) : (
             <CircularProgress />

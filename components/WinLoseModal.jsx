@@ -1,5 +1,5 @@
 import { Box, Button, Modal, ModalClose, Sheet, Typography } from "@mui/joy";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Confetti from "./Confetti";
 import styles from "../styles/Home.module.css";
 import { generateShareText, shareResults } from "../utils/shareResults";
@@ -19,21 +19,26 @@ const WinLoseModal = ({
   isDaily,
   onCopied,
 }) => {
-  const [sharing, setSharing] = useState(false);
+  const cachedShareText = useRef(null);
+
+  useEffect(() => {
+    if (gameFinished && isDaily) {
+      generateShareText(guesses, correctPlayer, gameWon, hintColumn).then(
+        (text) => { cachedShareText.current = text; }
+      );
+    }
+  }, [gameFinished]);
 
   const handleShare = async () => {
-    if (sharing) return;
-    setSharing(true);
     try {
-      const text = await generateShareText(guesses, correctPlayer, gameWon, hintColumn);
+      const text = cachedShareText.current ||
+        await generateShareText(guesses, correctPlayer, gameWon, hintColumn);
       const result = await shareResults(text);
       if (result === "copied" && onCopied) {
         onCopied();
       }
     } catch {
       // silently fail
-    } finally {
-      setSharing(false);
     }
   };
 

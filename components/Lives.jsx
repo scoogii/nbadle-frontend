@@ -8,6 +8,7 @@ const Lives = ({ guesses }) => {
         key={i}
         component="img"
         src="/obrien.jpeg"
+        alt="Remaining life"
         sx={{
           maxWidth: { xs: "25px", sm: "28px", md: "30px", lg: "35px" },
           maxHeight: { xs: "25px", sm: "28px", md: "30px", lg: "35px" },

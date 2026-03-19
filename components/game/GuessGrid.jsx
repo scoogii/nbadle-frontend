@@ -3,10 +3,12 @@ import { Paper } from "@mui/material";
 import Guess from "./Guess";
 
 const GuessGrid = ({
+  isDaily,
   playerCorrectName,
   guesses,
   guessRef,
   hintColumns,
+  hintClicked,
   setHintColumns,
   playerTeamName,
   playerConference,
@@ -33,7 +35,9 @@ const GuessGrid = ({
       <Grid ref={guessRef} spacing={0.2}>
         {guesses.map((guess, index) => (
           <Guess
+            isDaily={isDaily}
             hints={hintColumns}
+            hintClicked={hintClicked}
             setHintColumns={setHintColumns}
             playerCorrectName={playerCorrectName}
             guess={guess}

@@ -8,7 +8,7 @@ const GuessForm = ({ handleGuessSubmit, playerNames, guess, setGuess }) => {
         <Autocomplete
           variant="outlined"
           options={playerNames}
-          value={guess}
+          value={guess || null}
           filterOptions={(options, { inputValue }) => {
             const normalize = (s) => s.toLowerCase().replace(/['\-\s.]/g, "");
             const input = normalize(inputValue);

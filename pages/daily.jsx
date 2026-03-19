@@ -7,257 +7,49 @@ import styles from "../styles/Home.module.css";
 import WinLoseModal from "../components/WinLoseModal";
 import HowToPlayModal from "../components/HowToPlayModal";
 import CheatSheetModal from "../components/CheatSheetModal";
-import { useEffect, useRef, useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useEffect, useState } from "react";
 import PlayActions from "../components/PlayActions";
 import ColumnHeadings from "../components/ColumnHeadings";
-import GuessGrid from "../components/daily/GuessGrid";
+import GuessGrid from "../components/game/GuessGrid";
 import Countdown from "../components/daily/Countdown";
+import useGame from "../hooks/useGame";
 
 const Daily = () => {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
-  // Player data
-  const [playerHeadshot, setPlayerHeadshot] = useLocalStorage(
-    "playerHeadshot",
-    null,
-  );
-  const [playerFullName, setPlayerFullName] = useLocalStorage(
-    "playerFullName",
-    "",
-  );
-  const [playerTeamName, setPlayerTeamName] = useLocalStorage(
-    "playerTeamName",
-    "",
-  );
-  const [playerConference, setPlayerConference] = useLocalStorage(
-    "playerConference",
-    "",
-  );
-  const [playerAge, setPlayerAge] = useLocalStorage("playerAge", 0);
-  const [playerPos, setPlayerPos] = useLocalStorage("playerPos", "");
-  const [playerNo, setPlayerNo] = useLocalStorage("playerNo", 0);
-  const [playerDraftNo, setPlayerDraftNo] = useLocalStorage(
-    "playerDraftNo",
-    null,
-  );
-  const [playerDraftYear, setPlayerDraftYear] = useLocalStorage(
-    "playerDraftYear",
-    null,
-  );
 
-  // Columns that are valid for hints
-  const [hintColumns, setHintColumns] = useLocalStorage("hintColumns", [
-    "team_name",
-    "conference",
-    "age",
-    "position",
-    "player_number",
-    "draft_number",
-    "draft_year",
-  ]);
-
-  const [playerNames, setPlayerNames] = useState([]); // Set player names
-  const [gameFinished, setGameFinished] = useLocalStorage(
-    "gameFinished",
-    false,
-  ); // Game is finished or not
-  const [gameWon, setGameWon] = useState(false);
-
-  // Guesses and hints
-  const guessRef = useRef(null);
-  const [guess, setGuess] = useState("");
-  const [guesses, setGuesses] = useLocalStorage("guesses", []);
-
-  // Modals
-  const [winOpen, setWinOpen] = useState(false);
-  const [loseOpen, setLoseOpen] = useState(false);
-  const [howToPlayOpen, setHowToPlayOpen] = useState(false);
-  const [cheatSheetOpen, setCheatSheetOpen] = useState(false);
-
-  // Hint button status
-  const [hintClicked, setHintClicked] = useLocalStorage("hintClicked", true);
-
-  // Alert bar for invalid actions
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
-
-  // Copied to clipboard snackbar
-  const [copiedOpen, setCopiedOpen] = useState(false);
-
-  const cleanup = () => {
-    setGuess("");
-    setGuesses([]);
-    setHintClicked(true);
-    setGameFinished(false);
-    setGameWon(false);
-    setHintColumns([
-      "team_name",
-      "conference",
-      "age",
-      "position",
-      "player_number",
-      "draft_number",
-      "draft_year",
-    ]);
-  };
-
-  // Guess event handler
-  const handleGuessSubmit = (e) => {
-    e.preventDefault();
-
-    // If player already guessed, alert
-    if (guesses.includes(guess)) {
-      setAlertMessage("Already guessed this player 🤦. Guess another player");
-      setAlertOpen(true);
-      return;
-    }
-
-    // If guess is a valid player, handle guess
-    if (playerNames.includes(guess)) {
-      setGuess(guess);
-      setGuesses([...guesses, guess]);
-
-      // If user guesses the right player
-      if (guess === playerFullName) {
-        setGameFinished(true);
-        setGameWon(true);
-        setWinOpen(true);
-        return;
-      }
-    }
-
-    setGuess("");
-  };
-
-  const handleHintPress = () => {
-    // Hint is one time use
-    if (!hintClicked) {
-      setHintClicked(true);
-    }
-
-    // Hint counts as one valid guess
-    setGuesses([...guesses, "HINT"]);
-  };
-
-  // USE EFFECTS
-  // On load, get all active player names (Autocomplete)
-  useEffect(() => {
-    const fetchNames = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/getnames`,
-        {
-          method: "GET",
-        },
-      );
-      const data = await response.json();
-
-      if (data.error) {
-        alert(data.error);
-        return;
-      }
-      setPlayerNames(data);
-    };
-    fetchNames();
-  }, []);
-
-  // If mystery player has not been set, set one
-  useEffect(() => {
-    // Retreive player data function
-    const getPlayerData = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/getdailyplayer`,
-        {
-          method: "GET",
-        },
-      );
-      const data = await response.json();
-
-      if (data.error) {
-        alert(data.error);
-        return;
-      }
-      if (playerFullName !== data["full_name"]) {
-        cleanup();
-      }
-      setPlayerHeadshot(data["headshot"]);
-      setPlayerFullName(data["full_name"]);
-      setPlayerTeamName(data["team_name"]);
-      setPlayerConference(data["conference"]);
-      setPlayerAge(data["age"]);
-      setPlayerPos(data["position"]);
-      setPlayerNo(data["player_number"]);
-      setPlayerDraftNo(data["draft_number"]);
-      setPlayerDraftYear(data["draft_year"]);
-    };
-    getPlayerData();
-  }, []);
-
-  // If guesses is 6 and player not guessed, game is lost
-  useEffect(() => {
-    // Scroll to most recent guess
-    guessRef.current?.lastElementChild?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-    });
-
-    // Lose condition - show lose modal and load actual player guess row
-    if (guesses.length === 8 && !guesses.includes(playerFullName)) {
-      setGuesses([...guesses, playerFullName]);
-      setGameFinished(true);
-      setLoseOpen(true);
-    }
-  }, [guesses]);
-
-  useEffect(() => {
-    // Disable hint when there are 5 guesses or it is first guess
-    if (guesses.length === 1) {
-      setHintClicked(false);
-    }
-
-    if (guesses.length === 7) {
-      setHintClicked(true);
-    }
-  }, [guesses.length]);
-
-  useEffect(() => {
-    if (hintColumns.length === 0) {
-      setHintClicked(true);
-    }
-  }, [hintColumns.length]);
+  const game = useGame("daily");
 
   return (
     <>
       <AlertBar
-        isOpen={alertOpen}
-        handleClose={() => {
-          setAlertOpen(false);
-        }}
-        message={alertMessage}
+        isOpen={game.alertOpen}
+        handleClose={() => game.setAlertOpen(false)}
+        message={game.alertMessage}
       />
       <AlertBar
-        isOpen={copiedOpen}
-        handleClose={() => setCopiedOpen(false)}
+        isOpen={game.copiedOpen}
+        handleClose={() => game.setCopiedOpen(false)}
         message="Copied to clipboard! 📋"
         severity="success"
         background="#4caf50"
         borderColor="#2e7d32"
       />
       <HowToPlayModal
-        howToPlayOpen={howToPlayOpen}
-        setHowToPlayOpen={setHowToPlayOpen}
+        howToPlayOpen={game.howToPlayOpen}
+        setHowToPlayOpen={game.setHowToPlayOpen}
       />
       <CheatSheetModal
-        cheatSheetOpen={cheatSheetOpen}
-        setCheatSheetOpen={setCheatSheetOpen}
+        cheatSheetOpen={game.cheatSheetOpen}
+        setCheatSheetOpen={game.setCheatSheetOpen}
       />
       {isClient ? (
         <div className={styles.container}>
           <Header
-            setHowToPlayOpen={setHowToPlayOpen}
-            setCheatSheetOpen={setCheatSheetOpen}
+            setHowToPlayOpen={game.setHowToPlayOpen}
+            setCheatSheetOpen={game.setCheatSheetOpen}
           />
           <Box
             style={{
@@ -277,64 +69,63 @@ const Daily = () => {
               marginBottom: { lg: "-2vh" },
             }}
           >
-            {gameFinished ? <Countdown /> : null}{" "}
+            {game.gameFinished ? <Countdown /> : null}{" "}
             <PlayActions
-              gameFinished={gameFinished}
-              handleGuessSubmit={handleGuessSubmit}
-              playerNames={playerNames}
-              guess={guess}
-              guesses={guesses}
-              setGuess={setGuess}
-              setGuesses={setGuesses}
-              hintClicked={hintClicked}
-              handleHintPress={handleHintPress}
+              gameFinished={game.gameFinished}
+              handleGuessSubmit={game.handleGuessSubmit}
+              playerNames={game.playerNames}
+              guess={game.guess}
+              guesses={game.guesses}
+              setGuess={game.setGuess}
+              setGuesses={game.setGuesses}
+              hintClicked={game.hintClicked}
+              handleHintPress={game.handleHintPress}
             />
-            {/* Headings and Guess Grid */}
             <ColumnHeadings />
             <GuessGrid
-              playerCorrectName={playerFullName}
-              guesses={guesses}
-              guessRef={guessRef}
-              hintColumns={hintColumns}
-              hintClicked={hintClicked}
-              setHintColumns={setHintColumns}
-              playerTeamName={playerTeamName}
-              playerConference={playerConference}
-              playerAge={playerAge}
-              playerPos={playerPos}
-              playerNo={playerNo}
-              playerDraftNo={playerDraftNo}
-              playerDraftYear={playerDraftYear}
+              isDaily={true}
+              playerCorrectName={game.playerFullName}
+              guesses={game.guesses}
+              guessRef={game.guessRef}
+              hintColumns={game.hintColumns}
+              hintClicked={game.hintClicked}
+              setHintColumns={game.setHintColumns}
+              playerTeamName={game.playerTeamName}
+              playerConference={game.playerConference}
+              playerAge={game.playerAge}
+              playerPos={game.playerPos}
+              playerNo={game.playerNo}
+              playerDraftNo={game.playerDraftNo}
+              playerDraftYear={game.playerDraftYear}
             />
-            {/* Win Lose Modals */}
             <WinLoseModal
-              gameFinished={gameFinished}
-              gameWon={gameWon}
-              winOpen={winOpen}
-              loseOpen={loseOpen}
-              setWinOpen={setWinOpen}
-              setLoseOpen={setLoseOpen}
-              playerHeadshot={playerHeadshot}
-              playerFullName={playerFullName}
-              guesses={guesses}
+              gameFinished={game.gameFinished}
+              gameWon={game.gameWon}
+              winOpen={game.winOpen}
+              loseOpen={game.loseOpen}
+              setWinOpen={game.setWinOpen}
+              setLoseOpen={game.setLoseOpen}
+              playerHeadshot={game.playerHeadshot}
+              playerFullName={game.playerFullName}
+              guesses={game.guesses}
               correctPlayer={{
-                team_name: playerTeamName,
-                conference: playerConference,
-                age: playerAge,
-                position: playerPos,
-                player_number: playerNo,
-                draft_number: playerDraftNo,
-                draft_year: playerDraftYear,
+                team_name: game.playerTeamName,
+                conference: game.playerConference,
+                age: game.playerAge,
+                position: game.playerPos,
+                player_number: game.playerNo,
+                draft_number: game.playerDraftNo,
+                draft_year: game.playerDraftYear,
               }}
               hintColumn={
                 typeof window !== "undefined"
-                  ? JSON.parse(localStorage.getItem("hintColumn") || '""')
+                  ? (() => { try { return JSON.parse(localStorage.getItem("hintColumn") || '""'); } catch { return ""; } })()
                   : ""
               }
               isDaily={true}
               onCopied={() => {
-                setCopiedOpen(false);
-                setTimeout(() => setCopiedOpen(true), 100);
+                game.setCopiedOpen(false);
+                setTimeout(() => game.setCopiedOpen(true), 100);
               }}
             />
           </Box>
