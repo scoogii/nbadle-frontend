@@ -61,6 +61,7 @@ const Unlimited = () => {
             <ColumnHeadings />
             <GuessGrid
               isDaily={false}
+              isWnba={false}
               playerCorrectName={game.playerFullName}
               guesses={game.guesses}
               guessRef={game.guessRef}

@@ -6,11 +6,13 @@ import {
   checkTeam,
   checkAge,
   checkNo,
+  checkPosition,
   checkDraftNo,
   checkDraftYear,
 } from "../../utils/checkStats.js";
 const Guess = ({
   isDaily,
+  isWnba,
   hintClicked,
   setHintColumns,
   hintColumn,
@@ -39,15 +41,16 @@ const Guess = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const getGuessedPlayerData = async () => {
+    const guessEndpoint = isWnba ? "/getwnbaguessedplayer" : "/getguessedplayer";
     if (guess !== "HINT") {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/getguessedplayer?guess=${guess}`,
+        `${process.env.NEXT_PUBLIC_API_URL}${guessEndpoint}?guess=${guess}`,
         { method: "GET" }
       );
       return await response.json();
     } else {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/getguessedplayer?guess=${playerCorrectName}`
+        `${process.env.NEXT_PUBLIC_API_URL}${guessEndpoint}?guess=${playerCorrectName}`
       );
       const data = await response.json();
       for (const column in data) {
@@ -224,7 +227,7 @@ const Guess = ({
         <Box
           style={columnStyle}
           sx={boxStyle}
-          className={playerPos === pos ? styles.correctGuess : styles.fade}
+          className={checkPosition(pos, playerPos)}
         >
           {isLoading ? <div>{pos}</div> : <CircularProgress />}
         </Box>

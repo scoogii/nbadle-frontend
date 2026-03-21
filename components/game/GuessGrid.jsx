@@ -4,6 +4,7 @@ import Guess from "./Guess";
 
 const GuessGrid = ({
   isDaily,
+  isWnba,
   playerCorrectName,
   guesses,
   guessRef,
@@ -38,6 +39,7 @@ const GuessGrid = ({
         {guesses.map((guess, index) => (
           <Guess
             isDaily={isDaily}
+            isWnba={isWnba}
             hintClicked={hintClicked}
             setHintColumns={setHintColumns}
             hintColumn={hintColumn}

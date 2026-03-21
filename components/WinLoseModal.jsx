@@ -17,13 +17,14 @@ const WinLoseModal = ({
   correctPlayer,
   hintColumn,
   isDaily,
+  isWnba,
   onCopied,
 }) => {
   const [shareText, setShareText] = useState(null);
 
   useEffect(() => {
     if (gameFinished && isDaily) {
-      generateShareText(guesses, correctPlayer, gameWon, hintColumn).then(setShareText);
+      generateShareText(guesses, correctPlayer, gameWon, hintColumn, isWnba).then(setShareText);
     }
   }, [gameFinished]);
 

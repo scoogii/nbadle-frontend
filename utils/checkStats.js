@@ -83,6 +83,26 @@ export const checkDraftNo = (draftNo, playerDraftNo) => {
   }
 };
 
+export const checkPosition = (guessPos, playerPos) => {
+  if (guessPos === null || guessPos === "") {
+    return;
+  }
+
+  if (guessPos === playerPos) {
+    return styles.correctGuess;
+  }
+
+  // Check for partial overlap (e.g. "Guard" vs "Guard-Forward")
+  const guessParts = guessPos.split("-");
+  const playerParts = playerPos.split("-");
+  const hasOverlap = guessParts.some((p) => playerParts.includes(p));
+  if (hasOverlap) {
+    return styles.closeGuess;
+  }
+
+  return styles.fade;
+};
+
 export const checkDraftYear = (draftYear, playerDraftYear) => {
   if (draftYear === null) {
     return;

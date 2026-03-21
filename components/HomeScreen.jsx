@@ -67,7 +67,26 @@ const HomeScreen = () => {
             }}
             variant="contained"
             style={{
-              background: "#ffad54",
+              background: "#F9A05C",
+              fontSize: "11pt",
+              verticalAlign: "middle",
+            }}
+            className={styles.bgButton}
+            href="/wnba"
+            component={Link}
+          >
+            WNBA
+          </Button>
+          <Button
+            sx={{
+              width: { xs: 120, sm: 140, md: 150, lg: 200 },
+              height: { xs: 50, sm: 60, md: 65, lg: 70 },
+              color: "white",
+              borderRadius: "14px",
+            }}
+            variant="contained"
+            style={{
+              background: "#89BEF0",
               fontSize: "11pt",
               verticalAlign: "middle",
             }}

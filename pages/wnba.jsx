@@ -15,13 +15,13 @@ import Countdown from "../components/daily/Countdown";
 import ShareResultsButton from "../components/ShareResultsButton";
 import useGame from "../hooks/useGame";
 
-const Daily = () => {
+const Wnba = () => {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const game = useGame("daily");
+  const game = useGame("wnba");
 
   return (
     <>
@@ -79,7 +79,7 @@ const Daily = () => {
             <ColumnHeadings />
             <GuessGrid
               isDaily={true}
-              isWnba={false}
+              isWnba={true}
               playerCorrectName={game.playerFullName}
               guesses={game.guesses}
               guessRef={game.guessRef}
@@ -117,6 +117,7 @@ const Daily = () => {
               }}
               hintColumn={game.hintColumn}
               isDaily={true}
+              isWnba={true}
               onCopied={() => {
                 game.setCopiedOpen(false);
                 setTimeout(() => game.setCopiedOpen(true), 100);
@@ -136,6 +137,7 @@ const Daily = () => {
                 }}
                 gameWon={game.gameWon}
                 hintColumn={game.hintColumn}
+                isWnba={true}
                 onCopied={() => {
                   game.setCopiedOpen(false);
                   setTimeout(() => game.setCopiedOpen(true), 100);
@@ -150,4 +152,4 @@ const Daily = () => {
   );
 };
 
-export default Daily;
+export default Wnba;

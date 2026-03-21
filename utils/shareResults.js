@@ -11,8 +11,16 @@ const COLUMNS = [
 const getEmoji = (guessVal, correctVal, column) => {
   if (guessVal === null || guessVal === "") return "⬛";
 
-  if (column === "team_name" || column === "conference" || column === "position") {
+  if (column === "team_name" || column === "conference") {
     return guessVal === correctVal ? "🟩" : "⬛";
+  }
+
+  if (column === "position") {
+    if (guessVal === correctVal) return "🟩";
+    const guessParts = String(guessVal).split("-");
+    const correctParts = String(correctVal).split("-");
+    if (guessParts.some((p) => correctParts.includes(p))) return "🟨";
+    return "⬛";
   }
 
   if (column === "age") {
@@ -37,8 +45,9 @@ const getEmoji = (guessVal, correctVal, column) => {
   return "⬛";
 };
 
-export const generateShareText = async (guesses, correctPlayer, gameWon, hintColumn) => {
+export const generateShareText = async (guesses, correctPlayer, gameWon, hintColumn, isWnba = false) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const guessEndpoint = isWnba ? "/getwnbaguessedplayer" : "/getguessedplayer";
 
   // Exclude the auto-revealed correct answer on loss
   const guessesToShare = gameWon ? guesses : guesses.slice(0, -1);
@@ -53,7 +62,7 @@ export const generateShareText = async (guesses, correctPlayer, gameWon, hintCol
       continue;
     }
 
-    const response = await fetch(`${apiUrl}/getguessedplayer?guess=${guess}`);
+    const response = await fetch(`${apiUrl}${guessEndpoint}?guess=${guess}`);
     const data = await response.json();
 
     const row = COLUMNS.map((col) => {
@@ -63,7 +72,8 @@ export const generateShareText = async (guesses, correctPlayer, gameWon, hintCol
     rows.push(row);
   }
 
-  return `NBAdle 🏀 ${score}\n${rows.join("\n")}`;
+  const title = isWnba ? "WNBAdle 🏀" : "NBAdle 🏀";
+  return `${title} ${score}\n${rows.join("\n")}`;
 };
 
 export const shareResults = async (text) => {

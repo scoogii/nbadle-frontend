@@ -27,26 +27,30 @@ function usePersistedState(key, initialValue, persist) {
 }
 
 export default function useGame(mode) {
-  const isDaily = mode === "daily";
+  const isDaily = mode === "daily" || mode === "wnba";
+  const isWnba = mode === "wnba";
+
+  // Prefix localStorage keys for WNBA to avoid conflicts with NBA daily
+  const prefix = isWnba ? "wnba_" : "";
 
   // Player data — daily persists to localStorage, unlimited uses memory
-  const [playerHeadshot, setPlayerHeadshot] = usePersistedState("playerHeadshot", null, isDaily);
-  const [playerFullName, setPlayerFullName] = usePersistedState("playerFullName", "", isDaily);
-  const [playerTeamName, setPlayerTeamName] = usePersistedState("playerTeamName", "", isDaily);
-  const [playerConference, setPlayerConference] = usePersistedState("playerConference", "", isDaily);
-  const [playerAge, setPlayerAge] = usePersistedState("playerAge", 0, isDaily);
-  const [playerPos, setPlayerPos] = usePersistedState("playerPos", "", isDaily);
-  const [playerNo, setPlayerNo] = usePersistedState("playerNo", 0, isDaily);
-  const [playerDraftNo, setPlayerDraftNo] = usePersistedState("playerDraftNo", null, isDaily);
-  const [playerDraftYear, setPlayerDraftYear] = usePersistedState("playerDraftYear", null, isDaily);
-  const [hintColumns, setHintColumns] = usePersistedState("hintColumns", [...DEFAULT_HINT_COLUMNS], isDaily);
-  const [hintColumn, setHintColumn] = usePersistedState("hintColumn", "", isDaily);
-  const [gameFinished, setGameFinished] = usePersistedState("gameFinished", false, isDaily);
-  const [guesses, setGuesses] = usePersistedState("guesses", [], isDaily);
-  const [hintClicked, setHintClicked] = usePersistedState("hintClicked", true, isDaily);
+  const [playerHeadshot, setPlayerHeadshot] = usePersistedState(`${prefix}playerHeadshot`, null, isDaily);
+  const [playerFullName, setPlayerFullName] = usePersistedState(`${prefix}playerFullName`, "", isDaily);
+  const [playerTeamName, setPlayerTeamName] = usePersistedState(`${prefix}playerTeamName`, "", isDaily);
+  const [playerConference, setPlayerConference] = usePersistedState(`${prefix}playerConference`, "", isDaily);
+  const [playerAge, setPlayerAge] = usePersistedState(`${prefix}playerAge`, 0, isDaily);
+  const [playerPos, setPlayerPos] = usePersistedState(`${prefix}playerPos`, "", isDaily);
+  const [playerNo, setPlayerNo] = usePersistedState(`${prefix}playerNo`, 0, isDaily);
+  const [playerDraftNo, setPlayerDraftNo] = usePersistedState(`${prefix}playerDraftNo`, null, isDaily);
+  const [playerDraftYear, setPlayerDraftYear] = usePersistedState(`${prefix}playerDraftYear`, null, isDaily);
+  const [hintColumns, setHintColumns] = usePersistedState(`${prefix}hintColumns`, [...DEFAULT_HINT_COLUMNS], isDaily);
+  const [hintColumn, setHintColumn] = usePersistedState(`${prefix}hintColumn`, "", isDaily);
+  const [gameFinished, setGameFinished] = usePersistedState(`${prefix}gameFinished`, false, isDaily);
+  const [guesses, setGuesses] = usePersistedState(`${prefix}guesses`, [], isDaily);
+  const [hintClicked, setHintClicked] = usePersistedState(`${prefix}hintClicked`, true, isDaily);
 
   const [playerNames, setPlayerNames] = useState([]);
-  const [gameWon, setGameWon] = usePersistedState("gameWon", false, isDaily);
+  const [gameWon, setGameWon] = usePersistedState(`${prefix}gameWon`, false, isDaily);
   const [ready, setReady] = useState(!isDaily);
   const guessRef = useRef(null);
   const [guess, setGuess] = useState("");
@@ -88,7 +92,14 @@ export default function useGame(mode) {
 
   const getPlayerData = async () => {
     try {
-      const endpoint = isDaily ? "/getdailyplayer" : "/getplayer";
+      let endpoint;
+      if (isWnba) {
+        endpoint = "/getwnbadailyplayer";
+      } else if (isDaily) {
+        endpoint = "/getdailyplayer";
+      } else {
+        endpoint = "/getplayer";
+      }
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}${endpoint}`,
         { method: "GET" }
@@ -145,8 +156,9 @@ export default function useGame(mode) {
   useEffect(() => {
     const fetchNames = async () => {
       try {
+        const namesEndpoint = isWnba ? "/getwnbanames" : "/getnames";
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/getnames`,
+          `${process.env.NEXT_PUBLIC_API_URL}${namesEndpoint}`,
           { method: "GET" }
         );
         const data = await response.json();

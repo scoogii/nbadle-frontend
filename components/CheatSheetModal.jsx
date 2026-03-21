@@ -77,9 +77,11 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                 textAlign: "left",
               }}
             >
-              <h3 style={{ textAlign: "center" }}>
+              <h3 style={{ textAlign: "center", fontWeight: "normal", "fontStyle": "italic" }}>
                 For the filthy casuals
               </h3>
+              <h2 style={{ textAlign: "center", marginBottom: "2px" }}>NBA</h2>
+              <hr style={{ border: "none", borderTop: "1px solid #cdcfd1", marginTop: 0, marginBottom: "16px" }} />
               <h3>West</h3>
               <Box sx={teamsContainerStyle}>
                 <Box sx={imageContainerStyle}>
@@ -384,6 +386,50 @@ const CheatSheetModal = ({ cheatSheetOpen, setCheatSheetOpen }) => {
                     height={100}
                     style={teamImageStyle}
                   />
+                </Box>
+              </Box>
+              <h2 style={{ textAlign: "center", marginTop: "20px", marginBottom: "2px" }}>WNBA</h2>
+              <hr style={{ border: "none", borderTop: "1px solid #cdcfd1", marginTop: 0, marginBottom: "16px" }} />
+              <h3>West</h3>
+              <Box sx={teamsContainerStyle}>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/aces.png" alt="Las Vegas Aces logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/lynx.png" alt="Minnesota Lynx logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/mercury.png" alt="Phoenix Mercury logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/sparks.png" alt="Los Angeles Sparks logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/storm.png" alt="Seattle Storm logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/wings.png" alt="Dallas Wings logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+              </Box>
+              <h3>East</h3>
+              <Box sx={teamsContainerStyle}>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/dream.png" alt="Atlanta Dream logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/sky.png" alt="Chicago Sky logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/sun.png" alt="Connecticut Sun logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/fever.png" alt="Indiana Fever logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/liberty.png" alt="New York Liberty logo" width={100} height={100} style={teamImageStyle} />
+                </Box>
+                <Box sx={imageContainerStyle}>
+                  <Image component="img" src="/mystics.png" alt="Washington Mystics logo" width={100} height={100} style={teamImageStyle} />
                 </Box>
               </Box>
             </Box>

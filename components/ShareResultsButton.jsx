@@ -9,12 +9,13 @@ const ShareResultsButton = ({
   correctPlayer,
   gameWon,
   hintColumn,
+  isWnba,
   onCopied,
 }) => {
   const [shareText, setShareText] = useState(null);
 
   useEffect(() => {
-    generateShareText(guesses, correctPlayer, gameWon, hintColumn).then(setShareText);
+    generateShareText(guesses, correctPlayer, gameWon, hintColumn, isWnba).then(setShareText);
   }, []);
 
   const handleShare = async () => {
