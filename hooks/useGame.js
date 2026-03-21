@@ -46,7 +46,8 @@ export default function useGame(mode) {
   const [hintClicked, setHintClicked] = usePersistedState("hintClicked", true, isDaily);
 
   const [playerNames, setPlayerNames] = useState([]);
-  const [gameWon, setGameWon] = useState(false);
+  const [gameWon, setGameWon] = usePersistedState("gameWon", false, isDaily);
+  const [ready, setReady] = useState(!isDaily);
   const guessRef = useRef(null);
   const [guess, setGuess] = useState("");
 
@@ -164,11 +165,12 @@ export default function useGame(mode) {
   useEffect(() => {
     if (isDaily) {
       getPlayerData().then((data) => {
-        if (!data) return;
+        if (!data) { setReady(true); return; }
         if (playerFullName !== data["full_name"]) {
           cleanup();
         }
         setPlayerData(data);
+        setReady(true);
       });
     } else {
       if (playerFullName === "") {
@@ -208,7 +210,7 @@ export default function useGame(mode) {
     playerHeadshot, playerFullName, playerTeamName, playerConference,
     playerAge, playerPos, playerNo, playerDraftNo, playerDraftYear,
     // Game state
-    playerNames, gameFinished, gameWon, guess, guesses, guessRef,
+    ready, playerNames, gameFinished, gameWon, guess, guesses, guessRef,
     setGuess, setGuesses,
     // Hints
     hintColumns, setHintColumns, hintColumn, setHintColumn, hintClicked,

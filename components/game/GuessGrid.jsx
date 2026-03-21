@@ -38,7 +38,6 @@ const GuessGrid = ({
         {guesses.map((guess, index) => (
           <Guess
             isDaily={isDaily}
-            hints={hintColumns}
             hintClicked={hintClicked}
             setHintColumns={setHintColumns}
             hintColumn={hintColumn}

@@ -11,7 +11,6 @@ import {
 } from "../../utils/checkStats.js";
 const Guess = ({
   isDaily,
-  hints,
   hintClicked,
   setHintColumns,
   hintColumn,
@@ -86,11 +85,13 @@ const Guess = ({
     if (playerDraftNo === draftNo) toRemove.push("draft_number");
     if (playerDraftYear === draftYear) toRemove.push("draft_year");
 
-    if (hints.length > 0 && !hints.includes(hintColumn)) {
-      setHintColumn(hints[Math.floor(Math.random() * hints.length)]);
-    }
-
-    setHintColumns(hints.filter((item) => !toRemove.includes(item)));
+    setHintColumns((prev) => {
+      const updated = prev.filter((item) => !toRemove.includes(item));
+      if (updated.length > 0 && !updated.includes(hintColumn)) {
+        setHintColumn(updated[Math.floor(Math.random() * updated.length)]);
+      }
+      return updated;
+    });
   }, [teamName, conference, age, pos, no, draftNo, draftYear]);
 
   const columnStyle = {

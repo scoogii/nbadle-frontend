@@ -46,7 +46,7 @@ const Daily = () => {
         cheatSheetOpen={game.cheatSheetOpen}
         setCheatSheetOpen={game.setCheatSheetOpen}
       />
-      {isClient ? (
+      {isClient && game.ready ? (
         <div className={styles.container}>
           <Header
             setHowToPlayOpen={game.setHowToPlayOpen}
