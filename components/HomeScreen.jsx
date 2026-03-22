@@ -36,7 +36,11 @@ const HomeScreen = () => {
         <Box
           sx={{
             display: "flex",
-            gap: 5,
+            flexDirection: { xs: "column", sm: "row" },
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: { xs: 3, sm: 3, md: 5 },
           }}
         >
           <Button
